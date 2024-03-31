@@ -4,7 +4,7 @@
       <div class="main-box">
         <h1 class="hero-heading">Plant medicine for a better you</h1>
         <p>
-          Alternaleaf is an online medical clinic providing plant medicine care to 100,000+<br /><br />
+          Alternaleaf is an online medical clinic providing plant medicine care to 100,000+<br />
           Australians. Get started with a 30-second pre-screening and see if plant medicine could be
           right for you.
         </p>

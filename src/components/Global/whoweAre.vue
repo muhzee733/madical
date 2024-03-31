@@ -4,9 +4,9 @@
       <div class="skill-wrap1 text-left">
         <div class="row">
           <div class="col-md-8">
-            <h2 class="text-white m-0" style="font-weight: 600; border-right: 2px solid white">
+            <h3 class="text-white m-0" style="font-weight: 600; border-right: 2px solid white">
               OFFICIAL PARTNER OF THE DOLPHINS NRL
-            </h2>
+            </h3>
           </div>
           <div class="col-md-4 d-flex align-item-center justify-content-center">
             <button class="vs-btnn">Our Patnership</button>

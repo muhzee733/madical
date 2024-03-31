@@ -3,6 +3,12 @@
     <Header />
     <HeroSection />
     <WhoWeAre />
+    <WhoIsAl />
+    <ourServices />
+    <PriceTable />
+    <Testimonial />
+    <Accordion />
+    <Footer />
   </main>
 </template>
 
@@ -10,4 +16,10 @@
 import Header from '@/components/Global/headerNav.vue'
 import HeroSection from '@/components/Global/heroSection.vue'
 import WhoWeAre from '@/components/Global/whoweAre.vue'
+import WhoIsAl from '@/components/Global/whoIsAl.vue'
+import ourServices from '@/components/Global/ourServices.vue'
+import PriceTable from '@/components/Global/priceTable.vue'
+import Testimonial from '@/components/Global/testimonialUser.vue'
+import Accordion from '@/components/Global/accordionTabs.vue'
+import Footer from '@/components/Global/FooterSection.vue'
 </script>

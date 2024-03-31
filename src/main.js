@@ -1,6 +1,7 @@
 import './assets/css/style.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './assets/css/fontawesome.min.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

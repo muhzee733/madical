@@ -46,9 +46,11 @@
                 </nav>
               </div>
               <div class="col-auto gap-3 d-none d-lg-flex">
-                <a href="#" class="vs-btn">Start questionnaire</a>
-                <a href="#" class="vs-btn">Patient Login</a>
-              </div>
+    <!-- Use router-link instead of <a> tag -->
+    <router-link to="/pre-screenings" class="vs-btn">Start questionnaire</router-link>
+    <router-link to="/login" class="vs-btn">Patient Login</router-link>
+</div>
+
             </div>
           </div>
         </div>

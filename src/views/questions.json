@@ -1,0 +1,47 @@
+[
+    {
+      "question": "Firstly, do you have a medical condition that has been causing you distress for 3+ months?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "question": "Great, and how have you tried treating your condition?",
+      "options": ["Medication", "Therapy", "Exercise", "Other"]
+    },
+    {
+      "question": "Have you ever had surgery?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "question": "How often do you exercise?",
+      "options": ["Daily", "Weekly", "Occasionally", "Never"]
+    },
+    {
+      "question": "Do you smoke cigarettes?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "question": "How many hours of sleep do you get per night on average?",
+      "options": ["< 5 hours", "5-7 hours", "7-9 hours", "> 9 hours"]
+    },
+    {
+      "question": "How often do you consume alcohol?",
+      "options": ["Daily", "Weekly", "Occasionally", "Never"]
+    },
+    {
+      "question": "Do you have any allergies?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "question": "Are you currently taking any medications?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "question": "How would you rate your stress level on a scale of 1 to 10?",
+      "options": ["1-3", "4-6", "7-9", "10"]
+    },
+    {
+      "question": "Do you have any dietary restrictions?",
+      "options": ["Yes", "No"]
+    }
+  ]
+  
