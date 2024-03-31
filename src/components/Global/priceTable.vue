@@ -42,7 +42,7 @@
             Ready to get started? Complete our complimentary pre-screening questionnaire to see if
             you might be suitable.
           </p>
-          <a class="vs-btn">Start questionnaire</a>
+          <router-link to="/pre-screenings" class="vs-btn">Start questionnaire</router-link>
         </div>
         <div class="col-xl-6 mb-25 custom-price">
           <img src="@/assets/img/process.jpg" />

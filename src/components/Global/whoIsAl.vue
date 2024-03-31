@@ -33,7 +33,7 @@
                   <li>4. Sleep</li>
                 </ul>
               </div>
-              <a href="about.html" class="vs-btn">Learn More</a>
+              <router-link to="/pre-screenings" class="vs-btn">Start questionnaire</router-link>
             </div>
           </div>
         </div>

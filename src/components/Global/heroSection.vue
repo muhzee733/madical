@@ -8,7 +8,7 @@
           Australians. Get started with a 30-second pre-screening and see if plant medicine could be
           right for you.
         </p>
-        <button class="w-100 vs-btn">Start questionnaire</button>
+        <router-link to="/pre-screenings" class="vs-btn w-100">Start questionnaire</router-link>
         <div class="row pt-3">
           <div class="col-lg-4 text-center">
             <img src="@/assets/img/certified-doctors.svg" class="me-2" />
