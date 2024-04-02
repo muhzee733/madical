@@ -24,14 +24,16 @@
         <div class="header-main">
           <div class="container container-style1 position-relative">
             <div class="row align-items-center justify-content-between">
-              <div class="col-auto">
-                <div class="header1-logo py-2">Madical Logo</div>
+              <div class="col-xl-2">
+                <div class="header1-logo py-2">
+                  <img src="@/assets/img/Final-Final-Logo-1.png" width="100%" />
+                </div>
               </div>
-              <div class="col text-end text-lg-center">
+              <div class="col-xl-6 text-end text-lg-center justify-content-end">
                 <nav class="main-menu menu-style1 d-none d-lg-block">
                   <ul style="text-align: right">
                     <li class="mega-menu-wrap">
-                      <a href="index.html">How it works</a>
+                      <router-link to="/medical-certificate">medical certificate</router-link>
                     </li>
                     <li>
                       <a href="about.html">Pricing</a>
@@ -45,12 +47,10 @@
                   </ul>
                 </nav>
               </div>
-              <div class="col-auto gap-3 d-none d-lg-flex">
-    <!-- Use router-link instead of <a> tag -->
-    <router-link to="/pre-screenings" class="vs-btn">Start questionnaire</router-link>
-    <router-link to="/login" class="vs-btn">Patient Login</router-link>
-</div>
-
+              <div class="col-xl-4 gap-3 d-none d-lg-flex">
+                <router-link to="/pre-screenings" class="vs-btn">Start questionnaire</router-link>
+                <router-link to="/login" class="vs-btn">Patient Login</router-link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,3 @@
+<template>
+    medical certificate
+</template>
