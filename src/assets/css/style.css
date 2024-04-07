@@ -69,6 +69,7 @@ Version: 1.0.0
 /*=================================
    01. Theme Base
 ==================================*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 /*------------------- 1.1. Variable-------------------*/
 :root {
   --theme-color: #008490;
@@ -92,12 +93,17 @@ Version: 1.0.0
   --border-color: rgba(0, 0, 0, 0.1);
   --title-font: 'Quicksand', sans-serif;
   --body-font: 'Roboto', sans-serif;
+  --railway-font :'Raleway', sans-serif;
   --subtitle-font: 'Dancing Script', cursive;
   --icon-font: 'Font Awesome 5 Pro';
   --flaticon: 'Flaticon';
   --ripple-ani-duration: 5s;
 }
-
+.custom-heading{
+  font-family: var(--railway-font);
+  font-weight: 600;
+  font-size: 46px;
+}
 .home-five {
   --theme-color: #f20000;
   --title-color: #000000;
@@ -121,7 +127,33 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
+.category-section h2{
+  color: var(--theme-color) !important;
+  font-weight: 600;
+  font-family: var(--railway-font);
+  margin-bottom: 70px;
 
+}
+
+.category-section{
+  padding: 130px 0px;
+  background-image: url('@/assets/img/bg.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+.category-container img{
+  margin-bottom: 10px;
+}
+.category-container{
+  width:75% !important;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.section{
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  padding: 50px;
+}
 iframe {
   border: none;
   width: 100%;
@@ -152,7 +184,7 @@ img:not([draggable]),
 embed,
 object,
 video {
-  max-width: 100%;
+  /* max-width: 100%; */
   height: auto;
 }
 
@@ -206,7 +238,7 @@ button {
 
 img {
   border: none;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 h1 a,
@@ -2715,6 +2747,7 @@ textarea.form-control.is-invalid {
   font-size: 12px;
 }
 
+
 /* Large devices */
 @media (max-width: 1199px) {
   .fs-20 {
@@ -4797,6 +4830,21 @@ a {
   border-radius: 3px;
   -webkit-transition: all ease 0.4s;
   transition: all ease 0.4s;
+}
+.right-box{
+  padding-left: 130px !important;
+}
+.wrapper-madical{
+  background-image: url("../img//madical.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  min-height: 80vh;
+  background-size: 90% 37%;
+}
+.madical-section .custom-image{
+  margin-bottom: -17px;
+  width: 100%;
+  scale: 1.4;
 }
 .header-search-btn i {
   width: 25px;

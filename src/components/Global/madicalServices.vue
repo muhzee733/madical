@@ -1,0 +1,23 @@
+<template>
+  <section class="madical-section">
+    <div class="wrapper-madical d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6  text-center position-relative">
+            <img src="../../assets/img/banner-image.png" class="custom-image"/>
+          </div>
+          <div class="col-lg-6 right-box">
+            <h3>Get Quick</h3>
+            <h1 class="custom-heading">Madical Services</h1>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id quis commodi ipsa velit
+              ratione aut, similique eveniet illo repellat corrupti debitis voluptatem, voluptatum
+              optio adipisci sapiente magnam voluptate beatae reprehenderit!
+            </p>
+            <button class="vs-btn"> Get Certification</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
