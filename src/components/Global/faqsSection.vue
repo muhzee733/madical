@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center pb-4">READ FAQS TO FIND YOURS</h2>
+          <h2 class="text-center pb-4 railway-font">READ FAQS TO FIND YOURS</h2>
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -202,7 +202,7 @@
                 aria-labelledby="headingThree"
                 data-bs-parent="#accordionExample"
               >
-                <div class="accordion-body">
+                <div class="accordion-body railway-font">
                   If you’re still feeling unwell after the new end date, we recommend that you seek
                   a physical examination by a medical practitioner for further assessment and
                   guidance.

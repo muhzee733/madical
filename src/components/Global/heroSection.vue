@@ -1,26 +1,24 @@
 <template>
   <section class="vs-hero-wrapper position-relative">
-    <div class="overlay">
-      <div class="main-box">
-        <h1 class="hero-heading">Plant medicine for a better you</h1>
-        <p>
-          Alternaleaf is an online medical clinic providing plant medicine care to 100,000+<br />
-          Australians. Get started with a 30-second pre-screening and see if plant medicine could be
-          right for you.
-        </p>
-        <router-link to="/pre-screenings" class="vs-btn w-100">Start questionnaire</router-link>
-        <div class="row pt-3">
-          <div class="col-lg-4 text-center">
-            <img src="@/assets/img/certified-doctors.svg" class="me-2" />
-            <div class="font-8">Certified Doctors</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div>
+            <img src="@/assets/img/banner-person.png" width="100%" />
           </div>
-          <div class="col-lg-4 text-center">
-            <img src="@/assets/img/plant-medicine.svg" class="me-2" />
-            <div class="font-8">Legal access to plant medicine</div>
-          </div>
-          <div class="col-lg-4 text-center">
-            <img src="@/assets/img/legal-script.svg" class="me-2" />
-            <div class="font-8">LegitScript certified</div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center left-box">
+          <div class="box-banner">
+            <h2>Plant medicine</h2>
+            <p class="custom-paragraph">for a better you</p>
+            <p class="other-para">
+              Frazmedicall is an online medical clinic providing plant medicine care to 100,000+
+              Australians.
+              <br><br> 
+              Get started with a 30-second pre-screening and see if plant medicine
+              could be right for you.
+            </p>
+            <button class="vs-btn yellow-color text-dark">Start Questionaire</button>
           </div>
         </div>
       </div>

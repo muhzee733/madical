@@ -87,7 +87,7 @@ Version: 1.0.0
   --black-color: #000000;
   --dark-color: #060d0f;
   --white-color: #ffffff;
-  --yellow-color: #fec624;
+  --yellow-color: #d2d35b;
   --success-color: #28a745;
   --error-color: #dc3545;
   --border-color: rgba(0, 0, 0, 0.1);
@@ -99,15 +99,31 @@ Version: 1.0.0
   --flaticon: 'Flaticon';
   --ripple-ani-duration: 5s;
 }
+.yellow-color{
+  background-color: var(--yellow-color) !important;
+}
 .custom-heading{
   font-family: var(--railway-font);
   font-weight: 600;
   font-size: 46px;
 }
+.bg-container{
+  background-image: url('@/assets/img/bg-shape.png');
+}
+.railway-font{
+  font-family: var(--railway-font);
+}
+.accordion-item button, .accordion-body{
+  font-family: var(--railway-font);
+}
 .home-five {
   --theme-color: #f20000;
   --title-color: #000000;
   --body-color: #555555;
+}
+.footer-container{
+  width: 700px;
+  margin: 0 auto;
 }
 
 /*------------------- 1.2. Mixin -------------------*/
@@ -154,7 +170,7 @@ body {
   padding: 30px !important;
 }
 .py-130{
-  padding: 130px 0px;
+  padding: 60px 0px;
 }
 .category-container{
   width:75% !important;
@@ -323,25 +339,40 @@ h6 {
   font-size: 16px;
 }
 .vs-hero-wrapper {
-  background-image: url('@/assets/img/hero.jpg');
+  background-image: url('@/assets/img/bg-shape.png');
   min-height: 85vh;
-  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
-.overlay {
-  z-index: 1;
-  background-image: linear-gradient(#3004316e, rgba(48, 4, 49, 0) 80%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  padding-right: 9%;
+.box-banner{
+  background: white;
+  padding: 30px 80px 30px 30px;
+    border-radius: 20px;
+    margin-left: 50px;
 }
+.custom-paragraph{
+  font-size: 46px;
+    color: var(--theme-color);
+    font-weight: 400;
+    
+}
+.box-banner button{
+  font-size: 20px !important;
+  
+}
+.other-para{
+  font-size: 20px;
+  color: var(--dark-color);
+  font-weight: 400;
+}
+.left-box h2{
+  font-size: 50px !important;
+  font-family: var(--railway-font) !important;
+  color: var(--theme-color) !important;
+  font-weight: 700 !important;
+  margin-bottom: -20px;
+}
+
 .font-8 {
   font-size: 0.8rem;
   padding-top: 10px;
