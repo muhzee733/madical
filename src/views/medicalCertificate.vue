@@ -3,6 +3,7 @@
       <Header />
       <Madical />
       <Categories />
+      <Faqs />
       <Footer />
       
     </main>
@@ -13,5 +14,6 @@
   import Footer from '@/components/Global/FooterSection.vue'
   import Madical  from '@/components/Global/madicalServices.vue'
   import Categories  from '@/components/Global/categoriesSection.vue'
+  import Faqs  from '@/components/Global/faqsSection.vue'
   </script>
   

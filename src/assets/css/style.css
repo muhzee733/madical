@@ -144,6 +144,18 @@ body {
 .category-container img{
   margin-bottom: 10px;
 }
+.accordion button{
+  font-size: 24px !important;
+    font-weight: 700 !important;
+    padding: 30px;
+}
+.accordion-body{
+  font-size: 20px !important;
+  padding: 30px !important;
+}
+.py-130{
+  padding: 130px 0px;
+}
 .category-container{
   width:75% !important;
   margin: 0 auto;
