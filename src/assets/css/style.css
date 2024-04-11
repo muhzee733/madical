@@ -102,6 +102,9 @@ Version: 1.0.0
 .yellow-color{
   background-color: var(--yellow-color) !important;
 }
+.theme-color{
+  color: var(--theme-color) !important;
+}
 .custom-heading{
   font-family: var(--railway-font);
   font-weight: 600;
@@ -120,6 +123,14 @@ Version: 1.0.0
   --theme-color: #f20000;
   --title-color: #000000;
   --body-color: #555555;
+}
+.vs-btn-2{
+  font-size: 60px;
+  font-weight: 800;
+  padding: 10px 40px;
+  background-color: var(--yellow-color);
+  border: 0;
+  border-radius: 4px;
 }
 .footer-container{
   width: 700px;
@@ -142,6 +153,37 @@ body {
   line-height: 26px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+ul li{
+  list-style-type: none;
+}
+.custom-who{
+  background: var(--yellow-color);
+  padding: 30px;
+}
+.custom-who h6{
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+.custom-who-wrapper{
+  max-width: 850px ;
+  min-height: 80vh;
+  margin: 0 auto;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.who{
+  font-size: 22px;
+  color: var(--black-color);
+}
+.box-banner .custom-heading{
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  text-align: center;
 }
 .category-section h2{
   color: var(--theme-color) !important;
@@ -406,6 +448,10 @@ h6 {
   h4 {
     font-size: 22px;
   }
+  .madical-section .custom-image {
+    margin-bottom: -20px;
+    scale: 1;
+}
 }
 /* Medium devices */
 @media (max-width: 992px) {

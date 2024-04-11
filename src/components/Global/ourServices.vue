@@ -1,81 +1,93 @@
 <template>
-  <section class="vs-service-wrapper space-md-bottom">
+  <section class="vs-service-wrapper py-130">
     <div class="container">
       <div class="row text-center justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-6 wow fadeInUp" data-wow-delay="0.3s">
           <div class="section-title">
-            <h2 class="h1">How it works</h2>
+            <h2 class="text-center railway-font theme-color">How it works</h2>
           </div>
         </div>
       </div>
-      <div class="row vs-carousel wow fadeIn" data-wow-delay="0.3s" data-slide-show="3">
+      <div class="row">
         <div class="col-xl-3 mb-25">
-          <div class="service-box">
-            <div class="sr-img">
-              <!-- <img src="assets/img/service/sr-2-1.jpg" alt="Service Image" class="w-100" /> -->
-            </div>
-            <div class="sr-icon">
-              <i class="flaticon-computer-mouse"></i>
-            </div>
-            <div class="sr-content">
-              <h3 class="h4">
-                <a class="text-reset">1 30 second pre-screening</a>
-              </h3>
-              <p class="fs-xs">
-                Complete a simple questionnaire to see if you could be eligible.
-              </p>
-            </div>
+          <div class="service-box-1">
+            <img src="@/assets/img/icon-5.png" />
           </div>
         </div>
         <div class="col-xl-3 mb-25">
-          <div class="service-box">
-            <div class="sr-img">
-              <!-- <img src="assets/img/service/sr-2-2.jpg" alt="Service Image" class="w-100" /> -->
-            </div>
-            <div class="sr-icon">
-              <i class="flaticon-blood-pressure"></i>
-            </div>
-            <div class="sr-content">
-              <h3 class="h4">
-                <a class="text-reset" href="service.html">Online consultation</a>
-              </h3>
-              <p class="fs-xs">
-                Talk to a friendly nurse and doctor in a two-step telehealth appointment.
-              </p>
-            </div>
+          <div class="service-box-1">
+            <img src="@/assets/img/icon-6.png" />
           </div>
         </div>
         <div class="col-xl-3 mb-25">
-          <div class="service-box">
-            <div class="sr-img">
-              <!-- <img src="assets/img/service/sr-2-3.jpg" alt="Service Image" class="w-100" /> -->
-            </div>
-            <div class="sr-icon">
-              <i class="flaticon-stethoscope-1"></i>
-            </div>
-            <div class="sr-content">
-              <h3 class="h4">
-                <a class="text-reset" href="service.html">Express delivery</a>
-              </h3>
-              <p class="fs-xs">
-                If eligible, your plant medicine will be delivered directly to your door.
-              </p>
-            </div>
+          <div class="service-box-1">
+            <img src="@/assets/img/icon-7.png" />
           </div>
         </div>
         <div class="col-xl-3 mb-25">
-          <div class="service-box">
-            <div class="sr-icon">
-              <i class="flaticon-quality-of-life"></i>
+          <div class="service-box-1">
+            <img src="@/assets/img/icon-8.png" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 d-flex flex-column align-items-center justify-content-center gap-5 mt-5">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-5">
+            <h2 class="text-center railway-font theme-color">Transparent & affordable pricing</h2>
+            <button class="vs-btn-2 railway-font">Only $59</button>
+            <p class="text-center who">
+              And if your doctor decides alternative medicine isn't the right treatment, you will
+              not be charged!
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <ul>
+                <li class="mb-4">
+                  <img src="@/assets/img/icon-9.png" class="pe-3" /><span
+                    >Telehealth appointment</span
+                  >
+                </li>
+                <li class="mb-4">
+                  <img src="@/assets/img/icon-10.png" class="pe-3" /><span
+                    >Assess condition & medical history</span
+                  >
+                </li>
+                <li>
+                  <img src="@/assets/img/icon-11.png" class="pe-3" /><span
+                    >Personalised treatment plan</span
+                  >
+                </li>
+              </ul>
             </div>
-            <div class="sr-content">
-              <h3 class="h4">
-                <a class="text-reset">Patient portal </a>
-              </h3>
-              <p class="fs-xs">
-                Re-order medication and book follow-up appointments using our online portal.
-              </p>
+            <div class="col-lg-6">
+              <ul>
+                <li class="mb-4">
+                  <img src="@/assets/img/icon-12.png" class="pe-3" /><span
+                    >No referral required</span
+                  >
+                </li>
+                <li class="mb-4">
+                  <img src="@/assets/img/icon-13.png" class="pe-3" /><span
+                    >Concession program available</span
+                  >
+                </li>
+                <li class="mb-4">
+                  <img src="@/assets/img/icon-14.png" class="pe-3" /><span
+                    >30 minutes total</span
+                  >
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="d-flex flex-column align-items-center justify-content-center gap-5">
+            <h2 class="text-center railway-font theme-color">Ready to get started?</h2>
+
+            <p class="text-center who">
+              Ready to get started? Complete our complimentary pre-screening questionnaire to see if
+              you might be suitable.
+            </p>
+            <button class="vs-btn">Start Questionaire</button>
           </div>
         </div>
       </div>

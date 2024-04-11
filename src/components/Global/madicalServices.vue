@@ -15,6 +15,7 @@
               optio adipisci sapiente magnam voluptate beatae reprehenderit!
             </p>
             <button class="vs-btn"> Get Certification</button>
+            
           </div>
         </div>
       </div>
