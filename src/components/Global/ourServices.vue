@@ -8,30 +8,30 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-3 mb-25">
+      <div class="row custom-box">
+        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
           <div class="service-box-1">
             <img src="@/assets/img/icon-5.png" />
           </div>
         </div>
-        <div class="col-xl-3 mb-25">
+        <div class="col-xl-3  col-md-3 col-sm-3 col-6 mb-25">
           <div class="service-box-1">
             <img src="@/assets/img/icon-6.png" />
           </div>
         </div>
-        <div class="col-xl-3 mb-25">
+        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
           <div class="service-box-1">
             <img src="@/assets/img/icon-7.png" />
           </div>
         </div>
-        <div class="col-xl-3 mb-25">
+        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
           <div class="service-box-1">
             <img src="@/assets/img/icon-8.png" />
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12 d-flex flex-column align-items-center justify-content-center gap-5 mt-5">
+        <div class="col-lg-12 d-flex flex-column align-items-center justify-content-center gap-sm-0 gap-5 mt-5 ">
           <div class="d-flex flex-column align-items-center justify-content-center gap-5">
             <h2 class="text-center railway-font theme-color">Transparent & affordable pricing</h2>
             <button class="vs-btn-2 railway-font">Only $59</button>
@@ -41,7 +41,7 @@
             </p>
           </div>
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
               <ul>
                 <li class="mb-4">
                   <img src="@/assets/img/icon-9.png" class="pe-3" /><span
@@ -59,8 +59,8 @@
                   >
                 </li>
               </ul>
-            </div>
-            <div class="col-lg-6">
+            </div> 
+            <div class="col-lg-6 col-md-6 col-sm-6">
               <ul>
                 <li class="mb-4">
                   <img src="@/assets/img/icon-12.png" class="pe-3" /><span
@@ -80,7 +80,7 @@
               </ul>
             </div>
           </div>
-          <div class="d-flex flex-column align-items-center justify-content-center gap-5">
+          <div class="d-flex flex-column align-items-center justify-content-center gap-5 gap-md-2">
             <h2 class="text-center railway-font theme-color">Ready to get started?</h2>
 
             <p class="text-center who">

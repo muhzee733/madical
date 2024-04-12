@@ -11,23 +11,35 @@
             medicine.
           </p>
           <div class="custom-who mt-5">
-           <div class="custom-who-wrapper">
-            <p class="text-center who">
-              Alternative medicine has been prescribed for more than 140 conditions. Our caring
-              doctors often talk to people experiencing issues with...
-            </p>
-            <div class="row">
-              <div class="col-lg-3 text-center"><img class="mb-2" src="@/assets/img/icon-1.png" width="100%"/><h6>Stress</h6></div>
-              <div class="col-lg-3 text-center"><img class="mb-2" src="@/assets/img/icon-2.png" width="100%"/><h6>Pain Management</h6></div>
-              <div class="col-lg-3 text-center"><img class="mb-2" src="@/assets/img/icon-3.png" width="100%"/><h6>Sleep</h6></div>
-              <div class="col-lg-3 text-center"><img class="mb-2" src="@/assets/img/icon-4.png" width="100%"/><h6>Mental Health</h6></div>
+            <div class="custom-who-wrapper">
+              <p class="text-center who">
+                Alternative medicine has been prescribed for more than 140 conditions. Our caring
+                doctors often talk to people experiencing issues with...
+              </p>
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                  <img class="mb-2" src="@/assets/img/icon-1.png" width="100%" />
+                  <h6>Stress</h6>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                  <img class="mb-2" src="@/assets/img/icon-2.png" width="100%" />
+                  <h6>Pain Management</h6>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-3 col-6 text-center">
+                  <img class="mb-2" src="@/assets/img/icon-3.png" width="100%" />
+                  <h6>Sleep</h6>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                  <img class="mb-2" src="@/assets/img/icon-4.png" width="100%" />
+                  <h6>Mental Health</h6>
+                </div>
+              </div>
+              <p class="text-center who">
+                Complete our 30-second pre-screening questionnaire to find out if<br />
+                alternative medicine is right for you.
+              </p>
+              <button class="vs-btn">Start Questionaire</button>
             </div>
-            <p class="text-center who">
-              Complete our 30-second pre-screening questionnaire to find out if<br>
-alternative medicine is right for you.
-            </p>
-            <button class="vs-btn">Start Questionaire </button>
-           </div>
           </div>
         </div>
       </div>

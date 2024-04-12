@@ -2,12 +2,12 @@
   <section class="vs-hero-wrapper position-relative">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <div>
+        <div class="col-lg-6 col-md-4">
+          <div class="custom-img">
             <img src="@/assets/img/banner-person.png" width="100%" />
           </div>
         </div>
-        <div class="col-lg-6 d-flex align-items-center left-box">
+        <div class="col-lg-6 col-md-8 d-flex align-items-center left-box">
           <div class="box-banner">
             <h2>Plant medicine</h2>
             <p class="custom-paragraph">for a better you</p>
@@ -20,13 +20,13 @@
             </p>
             <button class="vs-btn yellow-color text-dark">Start Questionaire</button>
             <div class="row custom-heading mt-4">
-              <div class="col-lg-4">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                 <img src="@/assets/img/guarantee.png" width="50%" class="mb-3"/><br><span >Certified <br>Doctors</span>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                 <img src="@/assets/img/stethoscope.png" width="50%" class="mb-3" /><br><span>Legal access to plant medicine   </span>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                 <img src="@/assets/img/medicine.png" width="50%" class="mb-3"/><br><span>LegitScript certified</span>
               </div>
             </div>
