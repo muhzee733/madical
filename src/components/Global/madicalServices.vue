@@ -6,7 +6,7 @@
           <div class="col-lg-6  text-center position-relative">
             <img src="../../assets/img/banner-image.png" class="custom-image"/>
           </div>
-          <div class="col-lg-6 right-box">
+          <div class="col-lg-6 col-sm-12 right-box">
             <h3>Get Quick</h3>
             <h1 class="custom-heading">Madical Services</h1>
             <p>

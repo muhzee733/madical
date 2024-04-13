@@ -10,7 +10,7 @@
         <div class="col-lg-6 col-md-8 d-flex align-items-center left-box">
           <div class="box-banner">
             <h2>Plant medicine</h2>
-            <p class="custom-paragraph">for a better you</p>
+            <h6 class="custom-paragraph">for a better you</h6>
             <p class="other-para">
               Frazmedicall is an online medical clinic providing plant medicine care to 100,000+
               Australians.
