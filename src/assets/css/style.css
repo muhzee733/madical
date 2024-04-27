@@ -72,7 +72,7 @@ Version: 1.0.0
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 /*------------------- 1.1. Variable-------------------*/
 :root {
-  --theme-color: #008490;
+  --theme-color: #2d96a0;
   --theme-color2: #2cb624;
   --theme-color3: #27477d;
   --theme-color4: #07ccec;
@@ -107,7 +107,7 @@ Version: 1.0.0
 }
 .custom-heading{
   font-family: var(--railway-font);
-  font-weight: 600;
+  font-weight: bold;
   font-size: 46px;
 }
 .bg-container{
@@ -162,7 +162,7 @@ ul li{
   padding: 30px;
 }
 .custom-who h6{
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--dark-color);
 }
@@ -177,7 +177,7 @@ ul li{
     gap: 30px;
 }
 .who{
-  font-size: 22px !important;
+  font-size: 20px !important;
   color: var(--black-color);
 }
 .box-banner .custom-heading{
@@ -228,7 +228,9 @@ iframe {
   border: none;
   width: 100%;
 }
-
+h4{
+  font-weight: 600 !important;
+}
 .slick-slide:focus,
 button:focus,
 a:focus,
@@ -265,7 +267,9 @@ ul {
 ol {
   list-style-type: decimal;
 }
-
+h3{
+  font-weight: 600 !important;
+}
 table {
   margin: 0 0 1.5em;
   width: 100%;
@@ -386,9 +390,12 @@ h6 {
   background-position: center center;
   background-repeat: no-repeat;
 }
+.box-banner p{
+  padding-right: 50px;
+}
 .box-banner{
   background: white;
-  padding: 30px 80px 30px 30px;
+  padding: 30px;
     border-radius: 20px;
     margin-left: 50px;
 }
@@ -639,6 +646,9 @@ display: none;
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
+  .madical-section .custom-image {
+    scale: 1.1 !important;
+}
   .container-fluid.px-0:not(.default) .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -1677,13 +1687,16 @@ textarea.form-control.is-invalid {
     stroke-dashoffset: 0;
   }
 }
+.white-color{
+  color:  var(--white-color) !important;
+}
 /*------------------- 3.2. Buttons -------------------*/
 .vs-btn {
   position: relative;
   display: inline-block;
   text-align: center;
   background-color: var(--theme-color);
-  color: var(--white-color);
+  color: var(--black-color);
   padding: 0.7rem 1rem;
   cursor: pointer;
   border-radius: 0.375rem;
@@ -1710,8 +1723,8 @@ textarea.form-control.is-invalid {
   display: inline-block;
 }
 .vs-btn:hover {
-  background-color: var(--title-color);
-  color: var(--white-color);
+  background-color: var(--yellow-color);
+  color: var(--dark-color);
 }
 .vs-btn:hover:before,
 .vs-btn:hover i {
@@ -2519,7 +2532,7 @@ textarea.form-control.is-invalid {
 
 .light h2 {
   color: var(--dark-colors);
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .title-area-two.v1 .sub-title6::before {

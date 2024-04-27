@@ -6,8 +6,8 @@
           <h2 class="text-center railway-font theme-color">Who is Frazmedicall for?</h2>
           <p class="text-center who">
             Whether you're exploring alternative healthcare choices for the first time or have had
-            extensive experience with holistic medicine, we're here to connect you with highly
-            qualified doctors and nurses who are <br />experienced and specialise in alternative
+            extensive experience <br />with holistic medicine, we're here to connect you with highly
+            qualified doctors and nurses who are experi-<br />enced  and specialise in alternative
             medicine.
           </p>
           <div class="custom-who mt-5">
@@ -38,7 +38,8 @@
                 Complete our 30-second pre-screening questionnaire to find out if<br />
                 alternative medicine is right for you.
               </p>
-              <button class="vs-btn">Start Questionaire</button>
+              <router-link to="/pre-screenings" class="vs-btn white-color"
+                      >Start Questionnaire</router-link>
             </div>
           </div>
         </div>

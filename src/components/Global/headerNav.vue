@@ -57,8 +57,7 @@
                   </div>
                   <div class="col-xl-4 col-md-4 gap-3  d-lg-flex justify-content-end custom-button">
                     <router-link to="/pre-screenings" class="vs-btn yellow-color"
-                      >Start Questionnaire</router-link
-                    >
+                      >Start Questionnaire</router-link>
                     <router-link to="/login" class="vs-btn">Patient Login</router-link>
                   </div>
                 </div>

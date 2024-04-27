@@ -14,8 +14,8 @@
               ratione aut, similique eveniet illo repellat corrupti debitis voluptatem, voluptatum
               optio adipisci sapiente magnam voluptate beatae reprehenderit!
             </p>
-            <button class="vs-btn"> Get Certification</button>
-            
+            <router-link to="/pre-screenings" class="vs-btn yellow-color"
+                      >Start Questionnaire</router-link>
           </div>
         </div>
       </div>

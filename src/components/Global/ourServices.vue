@@ -87,7 +87,8 @@
               Ready to get started? Complete our complimentary pre-screening questionnaire to see if
               you might be suitable.
             </p>
-            <button class="vs-btn">Start Questionaire</button>
+            <router-link to="/pre-screenings" class="vs-btn yellow-color"
+                      >Start Questionnaire</router-link>
           </div>
         </div>
       </div>

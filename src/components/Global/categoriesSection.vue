@@ -2,7 +2,7 @@
   <section class="category-section">
     <div class="container">
       <div class="row">
-        <h2 class="text-center">Categories - (Will Change the text later on)</h2>
+        <h2 class="text-center">Categories</h2>
         <div class="category-container">
           <div class="row">
             <div class="col-lg-5 col-sm-5 section">
@@ -14,20 +14,21 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.
                 </p>
-                <button class="vs-btn">Get Certificate Now</button>
+                <a href="https://frazmedicall.com.au/" class="vs-btn white-color">Get Certificate Now</a>
+
               </div>
             </div>
             <div class="col-lg-2 col-sm-2"></div>
             <div class="col-lg-5 col-sm-5 section">
               <div class="box-container text-center">
                 <img src="@/assets/img/person-2.png" />
-                <h3>Online</h3>
-                <h2 class="m-0">Madical Certificate</h2>
+                <h3>Plant-Based</h3>
+                <h2 class="m-0">Madicine</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.
                 </p>
-                <button class="vs-btn">Get Certificate Now</button>
+                <router-link to="/medical-certificate" class="vs-btn yellow-color"  >Meet Madical Team</router-link>
               </div>
             </div>
           </div>
