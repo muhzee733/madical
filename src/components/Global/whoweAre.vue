@@ -18,19 +18,28 @@
               </p>
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
-                  <img class="mb-2" src="@/assets/img/icon-1.png" width="100%" />
+                  <div class="custom-bg"><img class="mb-2" src="@/assets/img/icon-1.png" width="100%" /></div>
                   <h6>Stress</h6>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
-                  <img class="mb-2" src="@/assets/img/icon-2.png" width="100%" />
+                  
+                  <div class="custom-bg">
+                    <img class="mb-2" src="@/assets/img/icon-2.png" width="100%" />
+                  </div>
                   <h6>Pain Management</h6>
                 </div>
                 <div class="col-lg-3  col-md-3 col-sm-3 col-6 text-center">
-                  <img class="mb-2" src="@/assets/img/icon-3.png" width="100%" />
+                  <div class="custom-bg">
+                    <img class="mb-2" src="@/assets/img/icon-3.png" width="100%" />
+                  </div>
+                
                   <h6>Sleep</h6>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
-                  <img class="mb-2" src="@/assets/img/icon-4.png" width="100%" />
+                  <div class="custom-bg">
+                    <img class="mb-2" src="@/assets/img/icon-4.png" width="100%" />
+                  </div>
+              
                   <h6>Mental Health</h6>
                 </div>
               </div>

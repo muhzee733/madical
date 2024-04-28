@@ -34,7 +34,7 @@
               <!-- Existing Content -->
               <div class="container container-style1 position-relative">
                 <div class="row align-items-center justify-content-between justify-content-md-end">
-                  <div class="col-xl-8 col-md-8 text-end text-lg-center justify-content-end">
+                  <div class="col-xl-9 col-md-9 text-end text-lg-center justify-content-end">
                     <nav class="main-menu menu-style1">
                       <ul style="text-align: right" class="burger-menu">
                         <li class="mega-menu-wrap">
@@ -55,10 +55,10 @@
                       </ul>
                     </nav>
                   </div>
-                  <div class="col-xl-4 col-md-4 gap-3  d-lg-flex justify-content-end custom-button">
+                  <div class="col-xl-3 col-md-3 gap-3  d-lg-flex justify-content-end custom-button">
                     <router-link to="/pre-screenings" class="vs-btn yellow-color"
                       >Start Questionnaire</router-link>
-                    <router-link to="/login" class="vs-btn">Patient Login</router-link>
+                    <!-- <router-link to="/login" class="vs-btn">Patient Login</router-link> -->
                   </div>
                 </div>
               </div>

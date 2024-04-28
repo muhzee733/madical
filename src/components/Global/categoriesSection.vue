@@ -2,14 +2,14 @@
   <section class="category-section">
     <div class="container">
       <div class="row">
-        <h2 class="text-center">Categories</h2>
+        <h2 class="text-center gray-color">Categories</h2>
         <div class="category-container">
           <div class="row">
             <div class="col-lg-5 col-sm-5 section">
               <div class="box-container text-center">
                 <img src="@/assets/img/person-1.png" />
-                <h3>Online</h3>
-                <h2 class="m-0">Madical Certificate</h2>
+                <h4>Online</h4>
+                <h3 class="m-0">Madical Certificate</h3>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.
@@ -19,11 +19,11 @@
               </div>
             </div>
             <div class="col-lg-2 col-sm-2"></div>
-            <div class="col-lg-5 col-sm-5 section">
+            <div class="col-lg-5 col-sm-5 section"> 
               <div class="box-container text-center">
                 <img src="@/assets/img/person-2.png" />
-                <h3>Plant-Based</h3>
-                <h2 class="m-0">Madicine</h2>
+                <h4>Plant-Based</h4>
+                <h3 class="m-0">Madicine</h3>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.

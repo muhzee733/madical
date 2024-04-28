@@ -42,7 +42,7 @@
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <ul>
+              <ul class="custom-ul">
                 <li class="mb-4">
                   <img src="@/assets/img/icon-9.png" class="pe-3" /><span
                     >Telehealth appointment</span
@@ -61,7 +61,7 @@
               </ul>
             </div> 
             <div class="col-lg-6 col-md-6 col-sm-6">
-              <ul>
+              <ul class="custom-ul">
                 <li class="mb-4">
                   <img src="@/assets/img/icon-12.png" class="pe-3" /><span
                     >No referral required</span

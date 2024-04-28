@@ -3,10 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center pb-4 railway-font">READ FAQS TO FIND YOURS</h2>
+          <h2 class="text-center pb-4 gray-color">READ FAQS TO FIND YOURS</h2>
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
+              <h4 class="accordion-header" id="headingOne">
                 <button
                   class="accordion-button"
                   type="button"
@@ -17,7 +17,7 @@
                 >
                   WHICH STATES DO YOU OPERATE IN?
                 </button>
-              </h2>
+              </h4>
               <div
                 id="collapseOne"
                 class="accordion-collapse collapse show"
@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h4 class="accordion-header" id="headingTwo">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -39,7 +39,7 @@
                 >
                   WHAT ARE YOUR OPERATION HOURS?
                 </button>
-              </h2>
+              </h4>
               <div
                 id="collapseTwo"
                 class="accordion-collapse collapse"
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -65,7 +65,7 @@
                 >
                   WHAT IS FRAZMEDICALL?
                 </button>
-              </h2>
+              </h4>
               <div
                 id="collapseThree"
                 class="accordion-collapse collapse"
@@ -82,22 +82,22 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="heading4">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
+                  data-bs-target="#collapse4"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapse4"
                 >
                   HOW LONG DOES IT TAKE TO RECEIVE YOUR CERTIFICATE?
                 </button>
-              </h2>
+              </h4>
               <div
-                id="collapseThree"
+                id="collapse4"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="heading4"
                 data-bs-parent="#accordionExample"
               >
                 <div class="accordion-body">
@@ -107,22 +107,22 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="heading5">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
+                  data-bs-target="#collapse5"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapse5"
                 >
                   CAN YOU BACKDATE A MEDICAL CERTIFICATE?
                 </button>
-              </h2>
+              </h4>
               <div
-                id="collapseThree"
+                id="collapse5"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="heading5"
                 data-bs-parent="#accordionExample"
               >
                 <div class="accordion-body">
@@ -132,22 +132,22 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="heading6">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
+                  data-bs-target="#collapse6"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapse6"
                 >
                   HOW MANY DAYS CAN I REQUEST?
                 </button>
-              </h2>
+              </h4>
               <div
-                id="collapseThree"
+                id="collapse6"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="heading6"
                 data-bs-parent="#accordionExample"
               >
                 <div class="accordion-body">
@@ -158,22 +158,22 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="heading7">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
+                  data-bs-target="#collapse7"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapse7"
                 >
                   WHY HAS THE END DATE OF MY MEDICAL CERTIFICATE CHANGED?
                 </button>
-              </h2>
+              </h4>
               <div
-                id="collapseThree"
+                id="collapse7"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="heading7"
                 data-bs-parent="#accordionExample"
               >
                 <div class="accordion-body">
@@ -184,22 +184,22 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h4 class="accordion-header" id="heading8">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
+                  data-bs-target="#collapse8"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapse8"
                 >
                   WHAT SHOULD I DO IF I AM STILL UNWELL AFTER THE NEW END DATE?
                 </button>
-              </h2>
+              </h4>
               <div
-                id="collapseThree"
+                id="collapse8"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="heading8"
                 data-bs-parent="#accordionExample"
               >
                 <div class="accordion-body railway-font">

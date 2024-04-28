@@ -7,7 +7,7 @@
             <img src="@/assets/img/Final-Final-Logo.png" width="20%" />
           </div>
           <div class="mb-5">
-            <h4 class="text-white">GET IN TOUCH</h4>
+            <h4 class="text-white">Get in Touch</h4>
             <p class="text-white">We’re available Mon-Fri, 9am-5am (AEST)</p>
           </div>
           <div class="footer-container mb-5">
