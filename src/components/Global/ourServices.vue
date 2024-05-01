@@ -9,24 +9,32 @@
         </div>
       </div>
       <div class="row custom-box">
-        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
-          <div class="service-box-1">
-            <img src="@/assets/img/icon-5.png" />
+        <div class="col-xl-3 col-md-3 col-sm-6 col-6 mb-25">
+          <div class="service-box-1 text-center">
+            <img src="@/assets/img/Express-Delivery.png" width="100%"/>
+            <h6 class="theme-color">Express Delivery,<br />Australia-wide</h6>
+            <p class="custom-p">If eligible, your plant medi-<br />cine will be delivered direct-<br />ly to your door.</p>
           </div>
         </div>
-        <div class="col-xl-3  col-md-3 col-sm-3 col-6 mb-25">
-          <div class="service-box-1">
-            <img src="@/assets/img/icon-6.png" />
+        <div class="col-xl-3 col-md-3 col-sm-6 col-6 mb-25">
+          <div class="service-box-1 text-center">
+            <img src="@/assets/img/Online-consultation.png" width="100%"/>
+            <h6 class="theme-color">Online <br />Consultation</h6>
+            <p class="custom-p">If eligible, your plant medi-<br />cine will be delivered direct-<br />ly to your door.</p>
           </div>
         </div>
-        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
-          <div class="service-box-1">
-            <img src="@/assets/img/icon-7.png" />
+        <div class="col-xl-3 col-md-3 col-sm-6 col-6 mb-25">
+          <div class="service-box-1 text-center">
+            <img src="@/assets/img/Patient-portal.png" width="100%"/>
+            <h6 class="theme-color">Patient Portal &<br /> Follow-up Care</h6>
+            <p class="custom-p">If eligible, your plant medi-<br />cine will be delivered direct-<br />ly to your door.</p>
           </div>
         </div>
-        <div class="col-xl-3 col-md-3 col-sm-3 col-6 mb-25">
-          <div class="service-box-1">
-            <img src="@/assets/img/icon-8.png" />
+        <div class="col-xl-3 col-md-3 col-sm-6 col-6 mb-25">
+          <div class="service-box-1 text-center">
+            <img src="@/assets/img/30-sec.png" width="100%"/>
+            <h6 class="theme-color">30 Second <br />Pre-screening</h6>
+            <p class="custom-p">If eligible, your plant medi-<br />cine will be delivered direct-<br />ly to your door.</p>
           </div>
         </div>
       </div>

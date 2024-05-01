@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PreScreening from '../views/PreScreening.vue'
 import NotFound from '../views/404Found.vue'
 import Login from '../views/loginScreen.vue'
-import Madical from '../views/medicalCertificate.vue'
+import Medical from '../views/medicalCertificate.vue'
 const routes = [
   {
     path: '/',
@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/medical-certificate',
     name: 'medical',
-    component: Madical
+    component: Medical
   }
 ]
 

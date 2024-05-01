@@ -38,7 +38,7 @@
                     <nav class="main-menu menu-style1">
                       <ul style="text-align: right" class="burger-menu">
                         <li class="mega-menu-wrap">
-                          <router-link to="/medical-certificate">Medical Certificate</router-link>
+                          <router-link to="/medical-certificate">Plant Medicine</router-link>
                         </li>
                         <li>
                           <a href="blog.html">How It Works</a>

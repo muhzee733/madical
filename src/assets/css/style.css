@@ -9,7 +9,7 @@
 /*------------------- 1.1. Variable-------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-  --theme-color: #2d96a0;
+  --theme-color: #1c7380;
   --theme-color2: #2cb624;
   --theme-color3: #27477d;
   --theme-color4: #07ccec;
@@ -41,6 +41,18 @@
 }
 .theme-color{
   color: var(--theme-color) !important;
+}
+.service-box-1 img{
+  max-width: 60%
+}
+.service-box-1{
+  background: #fafaec;
+  border-radius: 5px;
+  padding: 20px;
+}
+.custom-p{
+  font-family: var(--railway-font);
+  font-weight: 500;
 }
 .custom-heading{
   font-family: var(--railway-font);
@@ -352,9 +364,11 @@ h5 {
 
 .h6,
 h6 {
-  font-size: 16px;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-family: var(--railway-font);
 }
-.madical-section .custom-image{
+.Medical-section .custom-image{
   max-width: 120% !important;
 }
 .vs-hero-wrapper {
@@ -426,7 +440,7 @@ h6 {
   h4 {
     font-size: 22px;
   }
-  /* .madical-section .custom-image {
+  /* .Medical-section .custom-image {
     margin-bottom: -20px;
     scale: 1;
 } */
@@ -529,6 +543,21 @@ h6 {
   h2 {
     font-size: 22px;
   }
+  h6{
+    font-size: 15px !important;
+  }
+  .faqs h2 {
+    font-size: 32px !important;
+    font-weight: 700;
+    font-family: var(--railway-font);
+    margin-bottom: 20px !important;
+}
+h2{
+  font-size: 32px !important;
+}
+.vs-hero-wrapper {
+  padding-top: 0px !important;
+}
   
   .custom-img {
 display: none;
@@ -579,7 +608,7 @@ display: none;
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
-  /* .madical-section .custom-image {
+  /* .Medical-section .custom-image {
     scale: 1.1 !important;
 } */
   .container-fluid.px-0:not(.default) .row {
@@ -4940,14 +4969,14 @@ a {
 .right-box{
   padding-left: 130px !important;
 }
-.wrapper-madical{
-  background-image: url("../img//madical.png");
+.wrapper-Medical{
+  background-image: url("../img//Medical.png");
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 90% 32%;
   padding: 150px 0px 0px 0px;
 }
-/* .madical-section .custom-image{
+/* .Medical-section .custom-image{
   margin-bottom: -17px;
   width: 100%;
   scale: 1.4;
@@ -6066,11 +6095,11 @@ h2 {
   .header2-btn .vs-btn {
     margin-left: 25px;
   }
-  /* .madical-section .custom-image {
+  /* .Medical-section .custom-image {
     margin-bottom: -23px;
     scale: 1.2;
 } */
-.wrapper-madical {
+.wrapper-Medical {
   background-size: 90% 28%;
 }
 .main-menu a {
@@ -6139,13 +6168,13 @@ p{
   .header-list1 a i {
     font-size: 20px;
   }
-  /* .madical-section .custom-image {
+  /* .Medical-section .custom-image {
     scale: 1.2;
     position: absolute;
     right: -85px;
     top: -16px;
 } */
-.wrapper-madical {
+.wrapper-Medical {
   background-size: 90% 21%;
   min-height: 70vh;
 }
@@ -6156,7 +6185,7 @@ p{
     border-left: none;
     padding: 0;
   }
-  /* .madical-section .custom-image {
+  /* .Medical-section .custom-image {
     margin-bottom: -10px;
     scale: 1;
 } */
@@ -6181,7 +6210,7 @@ p{
   .header-layout4 .header-top {
     padding: 15px 0;
   }
-  .madical-section .custom-image {
+  .Medical-section .custom-image {
     display: none;
 }
 .right-box {
@@ -6233,7 +6262,7 @@ p{
   .custom-button a{
     margin-right: 10px;
   }
-  .wrapper-madical {
+  .wrapper-Medical {
     background-size: 90% 0%;
     min-height: 60vh;
 }

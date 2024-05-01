@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center pb-4 gray-color">FAQs For Medical Certificate</h2>
+          <h2 class="text-center pb-4 gray-color">FAQS For Plant Medicine</h2>
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h4 class="accordion-header" id="headingOne">

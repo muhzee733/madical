@@ -9,7 +9,7 @@
               <div class="box-container text-center">
                 <img src="@/assets/img/person-1.png" />
                 <h4>Online</h4>
-                <h3 class="m-0">Madical Certificate</h3>
+                <h3 class="m-0">Medical Certificate</h3>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.
@@ -28,7 +28,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.
                 </p>
-                <router-link to="/medical-certificate" class="vs-btn yellow-color"  >Meet Madical Team</router-link>
+                <router-link to="/medical-certificate" class="vs-btn yellow-color"  >Meet Medical Team</router-link>
               </div>
             </div>
           </div>
