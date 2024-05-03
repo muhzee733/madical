@@ -4970,7 +4970,7 @@ a {
   padding-left: 130px !important;
 }
 .wrapper-Medical{
-  background-image: url("../img//Medical.png");
+  background-image: url("@/assets/img/madical.png");
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 90% 32%;
