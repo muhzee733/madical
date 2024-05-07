@@ -40,7 +40,9 @@
                         <li class="mega-menu-wrap">
                           <router-link to="/medical-certificate">Plant Medicine</router-link>
                         </li>
-                        
+                        <li class="mega-menu-wrap">
+                          <router-link to="/">Medical Certificate</router-link>
+                        </li>
                         <li>
                           <a href="about.html">Pricing</a>
                         </li>
