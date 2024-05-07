@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center pb-4 gray-color">FAQS For Plant Medicine</h2>
+          <h2 class="text-center pb-4 gray-color">FAQs For Plant Medicine</h2>
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h4 class="accordion-header" id="headingOne">
@@ -15,7 +15,7 @@
                   aria-expanded="true"
                   aria-controls="collapseOne"
                 >
-                  WHICH STATES DO YOU OPERATE IN?
+                Which States Do You Operate In?
                 </button>
               </h4>
               <div
@@ -37,7 +37,7 @@
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  WHAT ARE YOUR OPERATION HOURS?
+                What Are Your Operation Hours?
                 </button>
               </h4>
               <div
@@ -63,7 +63,7 @@
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  WHAT IS FRAZMEDICALL?
+                What Is Frazmedicall?
                 </button>
               </h4>
               <div
@@ -91,7 +91,7 @@
                   aria-expanded="false"
                   aria-controls="collapse4"
                 >
-                  HOW LONG DOES IT TAKE TO RECEIVE YOUR CERTIFICATE?
+                How Long Does It Take To Receive Your Certificate?
                 </button>
               </h4>
               <div
@@ -116,7 +116,7 @@
                   aria-expanded="false"
                   aria-controls="collapse5"
                 >
-                  CAN YOU BACKDATE A MEDICAL CERTIFICATE?
+                Can You Backdate A Medical Certificate?
                 </button>
               </h4>
               <div
@@ -141,7 +141,7 @@
                   aria-expanded="false"
                   aria-controls="collapse6"
                 >
-                  HOW MANY DAYS CAN I REQUEST?
+                How Many Days Can I Request?
                 </button>
               </h4>
               <div
@@ -167,7 +167,7 @@
                   aria-expanded="false"
                   aria-controls="collapse7"
                 >
-                  WHY HAS THE END DATE OF MY MEDICAL CERTIFICATE CHANGED?
+                Why Has The End Date Of My Medical Certificate Changed?
                 </button>
               </h4>
               <div
@@ -193,7 +193,7 @@
                   aria-expanded="false"
                   aria-controls="collapse8"
                 >
-                  WHAT SHOULD I DO IF I AM STILL UNWELL AFTER THE NEW END DATE?
+                What Should I Do If I Am Still Unwell After The New End Date?
                 </button>
               </h4>
               <div

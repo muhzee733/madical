@@ -23,7 +23,7 @@
               <div class="box-container text-center">
                 <img src="@/assets/img/person-2.png" />
                 <h4>Plant-Based</h4>
-                <h3 class="m-0">Madicine</h3>
+                <h3 class="m-0">Medicine</h3>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore et dolore magna aliqua.

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-12 text-center text-white">
           <div class="text-center mb-5">
-            <img src="@/assets/img/Final-Final-Logo.png" width="20%" />
+            <img src="@/assets/img/Final-Final-Logo.png" />
           </div>
           <div class="mb-5">
             <h4 class="text-white">Get in Touch</h4>

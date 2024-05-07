@@ -40,9 +40,7 @@
                         <li class="mega-menu-wrap">
                           <router-link to="/medical-certificate">Plant Medicine</router-link>
                         </li>
-                        <li>
-                          <a href="blog.html">How It Works</a>
-                        </li>
+                        
                         <li>
                           <a href="about.html">Pricing</a>
                         </li>

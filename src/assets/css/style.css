@@ -126,7 +126,6 @@ body {
 .accordion-button:not(.collapsed) {
   color: var(--white-color) !important;
   background-color: var(--theme-color) !important;
-  text-transform: lowercase !important; 
   font-family: var(--railway-font);
 }
 
@@ -201,7 +200,6 @@ ul li{
   font-size: 24px !important;
     font-weight: 700 !important;
     padding: 30px;
-    text-transform: lowercase;
     font-family: var(--railway-font);
 }
 .accordion-body{
