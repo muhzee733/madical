@@ -9,11 +9,7 @@
 /*------------------- 1.1. Variable-------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-<<<<<<< HEAD
-  --theme-color: #1c7380;
-=======
   --theme-color: #03be9b;
->>>>>>> master
   --theme-color2: #2cb624;
   --theme-color3: #27477d;
   --theme-color4: #07ccec;
@@ -106,11 +102,7 @@
   margin: 0 auto;
 }
 h2{
-<<<<<<< HEAD
-  font-weight: 700 !important;
-=======
   font-weight: 600 !important;
->>>>>>> master
 }
 
 /*------------------- 1.2. Mixin -------------------*/
@@ -121,14 +113,6 @@ body {
   scroll-behavior: auto !important;
 }
 .faqs h2{
-<<<<<<< HEAD
-  font-size: 45px;
-    font-weight: 700;
-    font-family: var(--railway-font);
-    margin-bottom: 70px;
-    
-}
-=======
   font-size: 36px;
     font-weight: 600;
     font-family: var(--railway-font);
@@ -138,7 +122,6 @@ body {
 .trans.text-center {
   padding-top: 85px;
 }
->>>>>>> master
 .category-container h4{
   font-size: 30px;
   margin: 0;
@@ -200,20 +183,6 @@ ul li{
   color: var(--theme-color) !important;
 }
 .category-section h2{
-<<<<<<< HEAD
-  font-size: 45px;
-  font-weight: 700;
-  font-family: var(--railway-font);
-  margin-bottom: 70px;
-
-}
-
-.category-section{
-  padding: 130px 0px;
-  background-image: url('@/assets/img/bg.png');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-=======
   font-size: 36px;
   font-weight: 700;
   font-family: var(--railway-font);
@@ -242,7 +211,6 @@ p{
 }
 .category-section{
   padding: 10px 0px;
->>>>>>> master
 }
 .category-container img{
   margin-bottom: 10px;
@@ -258,9 +226,6 @@ p{
   padding: 30px !important;
 }
 .py-130{
-<<<<<<< HEAD
-  padding: 60px 0px;
-=======
   padding: 40px 0px;
 }
 .row.how {
@@ -286,7 +251,6 @@ p{
   font-size: 14px;
   margin: 0px;
   line-height: 22px;
->>>>>>> master
 }
 .category-container{
   width:75% !important;
@@ -446,11 +410,7 @@ h6 {
   font-family: var(--railway-font);
 }
 .Medical-section .custom-image{
-<<<<<<< HEAD
-  max-width: 120% !important;
-=======
   width: 100% !important;
->>>>>>> master
 }
 .vs-hero-wrapper {
   background-image: url('@/assets/img/bg-shape.png');
@@ -531,16 +491,11 @@ h6 {
   font-size: 14px !important;
 }
 .vs-btn{
-<<<<<<< HEAD
-  font-size: 12px !important;
-  padding: 0.4rem 0.3rem !important;
-=======
   font-size: 14px !important;
   padding: 0.4rem 1.3rem !important;
 }
 .faqs .accordion button {
   font-size: 16px !important;
->>>>>>> master
 }
 .other-para {
   font-size: 16px !important;
@@ -573,8 +528,6 @@ h6 {
   .main-menu a {
     font-size: 14px;
 }
-<<<<<<< HEAD
-=======
 .how .gap-2 p {
   font-size: 12px !important;
   margin: 0px;
@@ -586,7 +539,6 @@ a.vs-btn.only {
   font-weight: 600;
   padding: 10px 20px !important;
 }
->>>>>>> master
 .left-box h2 {
   font-size: 36px !important;
   margin-bottom: unset !important;
@@ -597,12 +549,9 @@ a.vs-btn.only {
 .box-banner {
   padding: 30px 35px 30px 30px !important;
 }
-<<<<<<< HEAD
-=======
 .how .gap-2 h4 {
   font-size: 13px !important;
 }
->>>>>>> master
 .vs-hero-wrapper{
   min-height: 100vh !important;
   display: flex;
@@ -656,11 +605,7 @@ a.vs-btn.only {
     font-size: 15px !important;
   }
   .faqs h2 {
-<<<<<<< HEAD
-    font-size: 32px !important;
-=======
     font-size: 22px !important;
->>>>>>> master
     font-weight: 700;
     font-family: var(--railway-font);
     margin-bottom: 20px !important;
@@ -858,8 +803,6 @@ display: none;
     --bs-gutter-x: 60px;
   }
 }
-<<<<<<< HEAD
-=======
 
 @media (min-width: 1200px){
   nav.main-menu.menu-style1 {
@@ -867,7 +810,6 @@ display: none;
     left: 40px;
 }
 }
->>>>>>> master
 /*------------------- 2.3. Input -------------------*/
 .form-select,
 .form-control {
@@ -1762,15 +1704,6 @@ textarea.form-control.is-invalid {
 /*------------------- 3.2. Buttons -------------------*/
 .vs-btn {
   position: relative;
-<<<<<<< HEAD
-  display: inline-block;
-  text-align: center;
-  background-color: var(--theme-color);
-  color: var(--black-color);
-  padding: 4px 10px;
-  cursor: pointer;
-  border-radius: 0.375rem;
-=======
   font-family: var(--railway-font);
   display: inline-block;
   text-align: center;
@@ -1781,14 +1714,11 @@ textarea.form-control.is-invalid {
   border-radius: 6px;
   height: 50px;
   align-content: center;
->>>>>>> master
   font-size: 20px;
   font-weight: 500;
   line-height: 1.5;
   border: 0;
 }
-<<<<<<< HEAD
-=======
 a.vs-btn.only {
   font-size: 36px;
   height: 80px;
@@ -1810,7 +1740,6 @@ a.vs-btn.only {
 .trans h5.mb-0 {
   font-size: 16px;
 }
->>>>>>> master
 .vs-btnn {
   position: relative;
   display: inline-block;
@@ -4681,11 +4610,7 @@ a.vs-btn.only {
   display: block;
   position: relative;
   font-family: var(--body-font);
-<<<<<<< HEAD
-  font-weight: 700;
-=======
   font-weight: 500;
->>>>>>> master
   color: var(--body-color);
   font-size: 18px;
 }
@@ -4701,14 +4626,10 @@ a.vs-btn.only {
   color: var(--theme-color);
 }
 .main-menu > ul > li {
-<<<<<<< HEAD
-  margin: 0 15px;
-=======
   margin: 0 25px;
 }
 nav.navbar.navbar-expand-lg.navbar-light {
   padding: 30px 20px 10px;
->>>>>>> master
 }
 .main-menu > ul > li > a .new-label {
   position: absolute;
@@ -5138,16 +5059,6 @@ a {
   transition: all ease 0.4s;
 }
 .right-box{
-<<<<<<< HEAD
-  padding-left: 130px !important;
-}
-.wrapper-Medical{
-  background-image: url("@/assets/img/madical.png");
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 90% 32%;
-  padding: 150px 0px 0px 0px;
-=======
   padding-left: 20px !important;
   padding-top: 60px !important;
   padding-bottom: 60px;
@@ -5192,7 +5103,6 @@ a {
 }
 .col-lg-8.ban.text-center.position-relative {
   padding: 0px;
->>>>>>> master
 }
 /* .Medical-section .custom-image{
   margin-bottom: -17px;
@@ -6176,11 +6086,7 @@ a {
   font-size: 18px;
 }
 h2 {
-<<<<<<< HEAD
-  font-size: 36px !important;
-=======
   font-size: 30px !important;
->>>>>>> master
 }
 }
 
@@ -6432,8 +6338,6 @@ p{
   .header-layout4 .header-top {
     padding: 15px 0;
   }
-<<<<<<< HEAD
-=======
   .how .d-flex.gap-2, .four-bx.d-flex {
     flex-flow: wrap;
     justify-content: center;
@@ -6476,7 +6380,6 @@ p{
 nav.navbar.navbar-expand-lg.navbar-light {
   padding: 15px 5px 0px;
 }
->>>>>>> master
   .Medical-section .custom-image {
     display: none;
 }
@@ -6547,14 +6450,10 @@ nav.navbar.navbar-expand-lg.navbar-light {
   display: none;
 }
 .category-section, .faqs{
-<<<<<<< HEAD
-  padding: 50px 0px !important;
-=======
   padding: 25px 0px !important;
 }
 .trans.text-center {
   padding-top: 50px;
->>>>>>> master
 }
 .accordion button {
   font-size: 14px !important;
@@ -10018,11 +9917,7 @@ blockquote cite:before {
   .ls-layer .vs-btn,
   .ls-btn .vs-btn {
     padding: 12px 23px 12px 23px;
-<<<<<<< HEAD
-    font-size: 12px;
-=======
     font-size: 14px;
->>>>>>> master
     margin-left: 0;
   }
 }

@@ -3,11 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-<<<<<<< HEAD
-          <h2 class="text-center pb-4 gray-color">FAQs For Medical Certificate</h2>
-=======
           <h2 class="text-center pb-0">FAQs</h2>
->>>>>>> master
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h4 class="accordion-header" id="headingOne">

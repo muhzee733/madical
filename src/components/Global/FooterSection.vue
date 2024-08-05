@@ -4,11 +4,7 @@
       <div class="row">
         <div class="col-lg-12 text-center text-white">
           <div class="text-center mb-5">
-<<<<<<< HEAD
-            <img src="@/assets/img/Final-Final-Logo.png" />
-=======
             <img style="max-width: 230px;" src="@/assets/img/logo-white.png" />
->>>>>>> master
           </div>
           <div class="mb-5">
             <h4 class="text-white">Get in Touch</h4>
