@@ -6381,7 +6381,14 @@ nav.navbar.navbar-expand-lg.navbar-light {
   padding: 15px 5px 0px;
 }
   .Medical-section .custom-image {
-    display: none;
+    padding: 20px 20px 0px;
+}
+.how .gap-2 h4 {
+  font-size: 14px !important;
+  max-width: 250px;
+}
+.accordion-body {
+  font-size: 15px !important;
 }
 .right-box {
   padding-left: 20px !important;
@@ -16336,8 +16343,6 @@ h2 {
   /* Large devices */
   /* Medium devices */
 }
-<<<<<<< HEAD
-=======
 button.accordion-button {
   box-shadow: unset ! IMPORTANT;
 }
@@ -16364,7 +16369,6 @@ button.accordion-button {
   background: transparent;
   --bs-accordion-bg: transparent;
 }
->>>>>>> master
 @media (max-width: 1399px) {
   .faq-image-box {
     margin-bottom: 70px;
