@@ -4,6 +4,7 @@ import PreScreening from '../views/PreScreening.vue'
 import NotFound from '../views/404Found.vue'
 import Login from '../views/loginScreen.vue'
 import Medical from '../views/medicalCertificate.vue'
+import Register from '../views/signUpScreen.vue'
 const routes = [
   {
     path: '/',
@@ -19,6 +20,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Register
   },
   {
     path: '/:catchAll(.*)',
