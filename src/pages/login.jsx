@@ -1,24 +1,49 @@
 import React, { useState, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs"; // Import Bootstrap icons
+import { useRouter } from "next/router";
+import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
+import { auth } from "../../firebase"; 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Implement your login logic here
-    console.log("Logging in with:", {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    });
+    setIsLoading(true);
+
+    try {
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
+      await signInWithEmailAndPassword(auth, email, password);
+      setIsLoading(false);
+      Swal.fire({
+        title: "Success!",
+        text: "Login successful. Redirecting...",
+        icon: "success",
+        confirmButtonText: "Okay"
+      }).then(() => {
+        router.push("/patient");
+      });
+    } catch (error) {
+      setIsLoading(false);
+      Swal.fire({
+        title: "Error!",
+        text: "Invalid email or password",
+        icon: "error",
+        confirmButtonText: "Try Again"
+      });
+    }
   };
 
   return (
@@ -34,10 +59,7 @@ const Login = () => {
             style={{ backgroundColor: "rgb(243, 246, 247)" }}
           >
             <div className="col-lg-6">
-              <form
-                onSubmit={handleLogin}
-                className="ajax-contact form-wrap3 mb-30"
-              >
+              <form onSubmit={handleLogin} className="ajax-contact form-wrap3 mb-30">
                 <div className="form-title">
                   <h3 className="h1 mb-5">Nice to see you again</h3>
                 </div>
@@ -45,8 +67,6 @@ const Login = () => {
                   <input
                     type="email"
                     className="form-control style3"
-                    name="email"
-                    id="email"
                     placeholder="Enter Your Email"
                     ref={emailRef}
                     required
@@ -60,8 +80,6 @@ const Login = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     className="form-control style3"
-                    name="password"
-                    id="password"
                     placeholder="Enter Password"
                     ref={passwordRef}
                     required
@@ -80,14 +98,14 @@ const Login = () => {
                     {showPassword ? <BsEyeSlash /> : <BsEye />}
                   </button>
                 </div>
-
                 <div className="form-btn pt-15">
                   <button
                     type="submit"
                     className="vs-btn"
                     style={{ width: "100%", borderRadius: "30px" }}
+                    disabled={isLoading}
                   >
-                    Login
+                    {isLoading ? "Logging in..." : "Login"}
                   </button>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
