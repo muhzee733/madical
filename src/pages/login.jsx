@@ -3,8 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
-import { auth } from "../../firebase"; 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signIn } from "next-auth/react";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -25,21 +24,37 @@ const Login = () => {
     try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-      await signInWithEmailAndPassword(auth, email, password);
-      setIsLoading(false);
-      Swal.fire({
-        title: "Success!",
-        text: "Login successful. Redirecting...",
-        icon: "success",
-        confirmButtonText: "Okay"
-      }).then(() => {
-        router.push("/patient");
+
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password
       });
+      
+      setIsLoading(false);
+
+      if (result?.error) {
+        Swal.fire({
+          title: "Error!",
+          text: result.error,
+          icon: "error",
+          confirmButtonText: "Try Again"
+        });
+      } else {
+        Swal.fire({
+          title: "Success!",
+          text: "Login successful. Redirecting...",
+          icon: "success",
+          confirmButtonText: "Okay"
+        }).then(() => {
+          router.push("/patient");
+        });
+      }
     } catch (error) {
       setIsLoading(false);
       Swal.fire({
         title: "Error!",
-        text: "Invalid email or password",
+        text: "Login failed. Please try again.",
         icon: "error",
         confirmButtonText: "Try Again"
       });

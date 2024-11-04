@@ -1,4 +1,3 @@
-// lib/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
@@ -12,10 +11,8 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
 export { auth, db };
