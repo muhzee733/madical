@@ -1,20 +1,35 @@
 // pages/_app.js
-import React from "react";
-import { Provider } from "react-redux";
+import React, { useEffect } from "react";
+import { Provider, useDispatch } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../store";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { SessionProvider } from "next-auth/react";
-import { getSession } from "next-auth/react";
+import { SessionProvider, useSession, getSession } from "next-auth/react";
+import { setUser, clearUser } from "../reducers/authSlice";
+
+function AppWrapper({ Component, pageProps }) {
+  const { data: session } = useSession();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (session?.user) {
+      dispatch(setUser(session.user));
+    } else {
+      dispatch(clearUser());
+    }
+  }, [session, dispatch]);
+
+  return <Component {...pageProps} />;
+}
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Component {...pageProps} />
+          <AppWrapper Component={Component} pageProps={pageProps} />
         </PersistGate>
       </Provider>
     </SessionProvider>
@@ -22,10 +37,10 @@ export default function MyApp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = async (context) => {
-  const session = await getSession(context);
+  const session = await getSession(context.ctx);
   return {
     pageProps: {
-      session, 
+      session,
     },
   };
 };
