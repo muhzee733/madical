@@ -1,19 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
 
 const Login = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -22,7 +21,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    try{
+
+    try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
@@ -31,28 +31,55 @@ const Login = () => {
         email,
         password
       });
+
       setIsLoading(false);
-      if(result?.status === 200){
-        Swal.fire({
-          title: "Success!",
-          text: "Login successful. Redirecting...",
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        router.push('/patient')
-      }else{
+
+      if (result?.error) {
         Swal.fire({
           title: "Error!",
           text: "Invalid Credentials",
           icon: "error",
-          confirmButtonText: "Try Again",
+          confirmButtonText: "Try Again"
+        });
+      } else {
+        Swal.fire({
+          title: "Success!",
+          text: "Login successful. Redirecting...",
+          icon: "success",
         });
       }
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      setIsLoading(false);
+      Swal.fire({
+        title: "Error!",
+        text: "Login failed. Please try again.",
+        icon: "error",
+        confirmButtonText: "Try Again"
+      });
     }
   };
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.role !== undefined) {
+      const userRole = session.user.role;
+
+      switch (userRole) {
+        case 2:
+          router.push("/patient");
+          break;
+        case 1:
+          router.push("/doctor");
+          break;
+        case 0:
+          router.push("/admin");
+          break;
+        default:
+          router.push("/");
+      }
+    } else if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, session, router]);
 
   return (
     <>

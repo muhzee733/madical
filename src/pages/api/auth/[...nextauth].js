@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { auth } from "../../../../firebase";
+import { auth, db } from "../../../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export default NextAuth({
   providers: [
@@ -13,6 +14,7 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         if (!credentials) return null;
+
         try {
           const userCredential = await signInWithEmailAndPassword(
             auth,
@@ -20,10 +22,18 @@ export default NextAuth({
             credentials.password
           );
           const user = userCredential.user;
-          return user
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDoc = await getDoc(userDocRef);
+          const userRole = userDoc.exists() ? userDoc.data().role : 'user';
+          return {
+            uid: user.uid,
+            email: user.email,
+            role: userRole,
+            redirect: "/patient"
+          };
         } catch (error) {
-          console.error(error);
-          return null
+          console.error("Error during authorization", error);
+          return null;
         }
       },
     }),
@@ -32,7 +42,8 @@ export default NextAuth({
     signIn: '/login',
   },
   session: {
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -48,15 +59,18 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.data = user.providerData;
-        token.accessToken = user.accessToken;
-        
+        token.role = user.role;
+        token.uid = user.uid;
+        token.email = user.email;
+        token.redirect = user.redirect;
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.token = token.accessToken;
-      session.user.data = token.data;
+      session.user.role = token.role;
+      session.user.uid = token.uid;
+      session.user.email = token.email;
+      session.user.redirect = token.redirect;
       return session;
     }
   },

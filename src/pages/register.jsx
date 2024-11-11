@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "fire
 import { setDoc, doc, getDocs, collection, query, where } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -87,17 +88,16 @@ const Register = () => {
         return;
       }
 
-      // Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-      // Add user to Firestore
       await setDoc(doc(db, "users", user.uid), {
         firstName,
         lastName,
         email,
         phone,
         role: 2,
+        _id:user.uid,
+        redirect: "/patient"
       });
 
       Swal.fire({

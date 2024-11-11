@@ -6,16 +6,16 @@ import { store, persistor } from "../store";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { SessionProvider, useSession, getSession } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react"; 
 import { setUser, clearUser } from "../reducers/authSlice";
 
 function AppWrapper({ Component, pageProps }) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession(); 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (session?.user) {
-      dispatch(setUser(session.user));
+    if (session) {
+      dispatch(setUser(session.user)); 
     } else {
       dispatch(clearUser());
     }
@@ -26,7 +26,7 @@ function AppWrapper({ Component, pageProps }) {
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}> 
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <AppWrapper Component={Component} pageProps={pageProps} />
@@ -35,12 +35,3 @@ export default function MyApp({ Component, pageProps }) {
     </SessionProvider>
   );
 }
-
-MyApp.getInitialProps = async (context) => {
-  const session = await getSession(context.ctx);
-  return {
-    pageProps: {
-      session,
-    },
-  };
-};
