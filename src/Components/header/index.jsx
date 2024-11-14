@@ -1,6 +1,15 @@
 import React from "react";
+import { useSession, signOut } from "next-auth/react";
 
 const Index = () => {
+  const { data: session } = useSession();
+  const { email } = session.user;
+
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: '/login',
+    });
+  };
   return (
     <>
       <header
@@ -47,27 +56,20 @@ const Index = () => {
                 data-bs-toggle="dropdown"
               >
                 <span className="d-none d-md-block dropdown-toggle ps-2">
-                  K. Anderson
+                  Guest
                 </span>
               </a>
 
               <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li className="dropdown-header">
-                  <h6>Kevin Anderson</h6>
-                  <span>Web Designer</span>
+                  <h6>{email}</h6>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
 
                 <li>
-                  <a
-                    className="dropdown-item d-flex align-items-center"
-                    href="#"
-                  >
-                    <i className="bi bi-box-arrow-right"></i>
-                    <span>Sign Out</span>
-                  </a>
+                <span onClick={handleSignOut} style={{cursor: "pointer", padding: "20px", textAlign: "center"}}>Sign Out</span>
                 </li>
               </ul>
             </li>

@@ -54,14 +54,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (data?.role !== undefined) {
-      // Redirect based on role
-      if (data.role === 2) {
-        router.push("/patient");
-      } else if (data.role === 1) {
-        router.push("/doctor");
-      } else if (data.role === 0) {
-        router.push("/admin");
-      }
+      router.push("/adminDashboard");
     }
   }, [data?.role, router]);
 

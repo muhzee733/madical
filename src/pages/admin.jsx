@@ -1,23 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { getSession } from "next-auth/react";
-import Header from "../Components/header";
-import Sidebae from "../Components/Sidebae";
 
 const AdminPage = ({ user }) => {
-  useEffect(() => {
-    document.title = "Dashboard | Doctor";
-  }, []);
+
   return (
     <div>
-      <Header />
-      <aside id="sidebar" class="sidebar">
-        <Sidebae />
-      </aside>
-      <main id="main" class="main">
-        <div class="pagetitle">
-          <h1>Admin Dashboard</h1>
-        </div>
-        <section class="section dashboard">
+      <section class="section dashboard">
           <div class="row">
             <div class="col-lg-8">
               <div class="row">
@@ -46,7 +34,6 @@ const AdminPage = ({ user }) => {
             </div>
           </div>
         </section>
-      </main>
     </div>
   );
 };

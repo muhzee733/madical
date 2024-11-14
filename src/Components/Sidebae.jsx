@@ -5,7 +5,7 @@ const Sidebae = () => {
   return (
     <ul className="sidebar-nav" id="sidebar-nav">
       <li className="nav-item">
-        <Link href="/dashboard" className="nav-link">
+        <Link href="/adminDashboard" className="nav-link">
           <span>Dashboard</span>
         </Link>
       </li>

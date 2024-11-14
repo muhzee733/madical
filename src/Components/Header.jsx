@@ -3,7 +3,9 @@ import Image from 'next/image'
 import Logo from '../assets/img/pro-logo.png';
 
 
+
 function Header() {
+
   return (
     <header className="header-wrapper">
       {/* Navbar */}
