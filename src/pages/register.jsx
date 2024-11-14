@@ -96,8 +96,7 @@ const Register = () => {
         email,
         phone,
         role: 2,
-        _id:user.uid,
-        redirect: "/patient"
+        _id:user.uid
       });
 
       Swal.fire({

@@ -5,10 +5,10 @@ import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import { signIn } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const { data: session, status } = useSession();
+  const data = useSelector((state) => state.userData);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,6 @@ const Login = () => {
           timer: 1500,
           showConfirmButton: false,
         });
-        router.push('/patient')
       }else{
         Swal.fire({
           title: "Error!",
@@ -53,6 +52,18 @@ const Login = () => {
       console.log(error)
     }
   };
+  useEffect(() => {
+    if (data?.role !== undefined) {
+      // Redirect based on role
+      if (data.role === 2) {
+        router.push("/patient");
+      } else if (data.role === 1) {
+        router.push("/doctor");
+      } else if (data.role === 0) {
+        router.push("/admin");
+      }
+    }
+  }, [data?.role, router]);
 
   return (
     <>

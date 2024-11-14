@@ -14,12 +14,12 @@ function AppWrapper({ Component, pageProps }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (session) {
+    if (status === 'authenticated') {
       dispatch(setUser(session.user)); 
     } else {
       dispatch(clearUser());
     }
-  }, [session, dispatch]);
+  }, [session, dispatch, status]);
 
   return <Component {...pageProps} />;
 }
