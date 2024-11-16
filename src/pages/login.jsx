@@ -3,12 +3,11 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
 
 const Login = () => {
-  const data = useSelector((state) => state.userData);
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,17 +21,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    try{
+    try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
       const result = await signIn("credentials", {
         redirect: false,
         email,
-        password
+        password,
       });
       setIsLoading(false);
-      if(result?.status === 200){
+      if (result?.status === 200) {
         Swal.fire({
           title: "Success!",
           text: "Login successful. Redirecting...",
@@ -40,7 +39,7 @@ const Login = () => {
           timer: 1500,
           showConfirmButton: false,
         });
-      }else{
+      } else {
         Swal.fire({
           title: "Error!",
           text: "Invalid Credentials",
@@ -48,15 +47,16 @@ const Login = () => {
           confirmButtonText: "Try Again",
         });
       }
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
+
   useEffect(() => {
-    if (data?.role !== undefined) {
+    if (status === "authenticated" && session?.user?.role !== undefined) {
       router.push("/adminDashboard");
     }
-  }, [data?.role, router]);
+  }, [status, session, router]);
 
   return (
     <>
@@ -71,7 +71,10 @@ const Login = () => {
             style={{ backgroundColor: "rgb(243, 246, 247)" }}
           >
             <div className="col-lg-6">
-              <form onSubmit={handleLogin} className="ajax-contact form-wrap3 mb-30">
+              <form
+                onSubmit={handleLogin}
+                className="ajax-contact form-wrap3 mb-30"
+              >
                 <div className="form-title">
                   <h3 className="h1 mb-5">Nice to see you again</h3>
                 </div>

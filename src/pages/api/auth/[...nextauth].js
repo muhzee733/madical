@@ -29,7 +29,6 @@ export default NextAuth({
             uid: user.uid,
             email: user.email,
             role: userRole,
-            redirect: "/patient"
           };
         } catch (error) {
           console.error("Error during authorization", error);
@@ -62,7 +61,6 @@ export default NextAuth({
         token.role = user.role;
         token.uid = user.uid;
         token.email = user.email;
-        token.redirect = user.redirect;
       }
       return token;
     },
@@ -70,7 +68,6 @@ export default NextAuth({
       session.user.role = token.role;
       session.user.uid = token.uid;
       session.user.email = token.email;
-      session.user.redirect = token.redirect;
       return session;
     }
   },

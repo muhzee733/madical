@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useRouter } from 'next/router';
+
 
 const Patient = () => {
   const { data: session, status } = useSession();
@@ -26,20 +27,12 @@ const Patient = () => {
     return null; // Optionally you can return a loading spinner or placeholder
   }
 
-  // Handle sign-out
-  const handleSignOut = () => {
-    signOut({
-      callbackUrl: '/login', // Redirect to the login page after sign out
-    });
-  };
 
   return (
     <div>
       <h1>Patient Dashboard</h1>
       <p>Welcome, {session.user.email}!</p>
 
-      {/* Sign out button */}
-      <button onClick={handleSignOut}>Sign Out</button>
     </div>
   );
 };

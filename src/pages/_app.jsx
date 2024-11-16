@@ -6,21 +6,9 @@ import { store, persistor } from "../store";
 import "../assets/css/style.css";
 import "../assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { SessionProvider, useSession } from "next-auth/react"; 
-import { setUser, clearUser } from "../reducers/authSlice";
+import { SessionProvider } from "next-auth/react"; 
 
 function AppWrapper({ Component, pageProps }) {
-  const { data: session, status } = useSession(); 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      dispatch(setUser(session.user)); 
-    } else {
-      dispatch(clearUser());
-    }
-  }, [session, dispatch, status]);
-
   return <Component {...pageProps} />;
 }
 
