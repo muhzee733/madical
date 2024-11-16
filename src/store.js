@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import rootReducer from './reducers/authSlice';
 import userReducer from './reducers/usersSlice';
+import slotReducer from './reducers/slotslice';
 import CryptoJS from 'crypto-js';
 
 const secretKey = '4!bB7eP#j0j&8nQ@r';
@@ -32,6 +33,7 @@ const persistConfig = {
 const rootReducerCombined = combineReducers({
   auth: rootReducer,
   users: userReducer,
+  slots: slotReducer
 });
 
 // Apply persisted reducer to the combined reducers

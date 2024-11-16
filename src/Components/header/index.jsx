@@ -6,8 +6,9 @@ import { clearUser } from "../../reducers/authSlice";
 const Index = () => {
   const { data: session } = useSession();
   const dispatch = useDispatch();
-  const onlineStatus = useSelector((state) => state.auth.online); 
+  const onlineStatus = useSelector((state) => state.auth.online);
   const email = session?.user?.email || "Guest";
+  const role = session?.user?.role;
 
   const handleSignOut = () => {
     signOut({
@@ -18,7 +19,10 @@ const Index = () => {
 
   return (
     <>
-      <header id="header" className="header fixed-top d-flex align-items-center">
+      <header
+        id="header"
+        className="header fixed-top d-flex align-items-center"
+      >
         <div className="d-flex align-items-center justify-content-between">
           <a href="#" className="logo d-flex align-items-center">
             <span className="d-none d-lg-block">NiceAdmin</span>
@@ -43,6 +47,15 @@ const Index = () => {
             </button>
           </form>
         </div>
+        {role === 1 ? (
+          <div>
+            <span className="badge badge-pill badge-success">
+              {onlineStatus ? "Online" : ""}
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
 
         <nav className="header-nav ms-auto">
           <ul className="d-flex align-items-center">
@@ -60,28 +73,12 @@ const Index = () => {
               >
                 <span className="d-none d-md-block dropdown-toggle ps-2">
                   {session ? email : "Guest"}
-                  <span
-                    className={`status-indicator ${
-                      onlineStatus ? "online" : "offline"
-                    }`}
-                    style={{ marginLeft: "10px", fontSize: "12px" }}
-                  >
-                    {onlineStatus ? "Online" : "Offline"}
-                  </span>
                 </span>
               </a>
 
               <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li className="dropdown-header">
                   <h6>{email}</h6>
-                  <span
-                    className={`status-indicator ${
-                      onlineStatus ? "online" : "offline"
-                    }`}
-                    style={{ fontSize: "14px", marginLeft: "10px" }}
-                  >
-                    {onlineStatus ? "Online" : "Offline"}
-                  </span>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />

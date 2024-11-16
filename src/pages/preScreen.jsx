@@ -13,6 +13,38 @@ const PreScreen = () => {
   const currentQuestion = questionsData[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questionsData.length - 1;
 
+  // Check if the session is expired
+  const checkSessionExpiry = () => {
+    const sessionTime = sessionStorage.getItem('sessionTime');
+    if (sessionTime) {
+      const currentTime = new Date().getTime();
+      const sessionAge = currentTime - parseInt(sessionTime, 10); // Age in milliseconds
+      const SIX_HOURS = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+
+      if (sessionAge > SIX_HOURS) {
+        // If session has expired, clear sessionStorage
+        sessionStorage.removeItem('userAnswers');
+        sessionStorage.removeItem('sessionTime');
+        return true; // Expired
+      }
+    }
+    return false; // Not expired
+  };
+
+  useEffect(() => {
+    // Check session expiration on component mount
+    if (checkSessionExpiry()) {
+      // If session expired, navigate to the home or login page, or show a message
+      Swal.fire({
+        icon: 'warning',
+        title: 'Session Expired',
+        text: 'Your session has expired. Please start over.',
+      }).then(() => {
+        router.push('/'); // Redirect to homepage or pre-screen page
+      });
+    }
+  }, [router]);
+
   const nextQuestion = () => {
     if (currentQuestionIndex === null) {
       setCurrentQuestionIndex(0); // Move to the first question
@@ -52,8 +84,9 @@ const PreScreen = () => {
       answer: selectedOptions[index],
     }));
 
-    // Store in localStorage
-    localStorage.setItem('userAnswers', JSON.stringify(answersWithQuestions));
+    // Store in localStorage (set sessionTime to track session expiration)
+    sessionStorage.setItem('userAnswers', JSON.stringify(answersWithQuestions));
+    sessionStorage.setItem('sessionTime', new Date().getTime().toString()); // Store current time
 
     // Simulate a loading delay for UX
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -63,7 +96,7 @@ const PreScreen = () => {
       title: 'Thank you!',
       text: 'Your answers have been submitted successfully.',
     }).then(() => {
-      router.push('/login');
+      router.push('/register');
     }).finally(() => {
       setIsSubmitting(false);
     });

@@ -1,18 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash, BsTelephone } from "react-icons/bs";
 import { auth, db } from "../../firebase";
 import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
-import { setDoc, doc, getDocs, collection, query, where } from "firebase/firestore";
+import { setDoc, doc, getDocs, collection, query, where, updateDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [userAnswers, setUserAnswers] = useState(null); // Track if questions are answered
 
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -42,6 +42,15 @@ const Register = () => {
     return phoneRegex.test(phone);
   };
 
+  // Check if user answers the questions
+  const checkUserAnswers = () => {
+    const savedAnswers = sessionStorage.getItem("userAnswers");
+    if (savedAnswers) {
+      setUserAnswers(JSON.parse(savedAnswers));
+    }
+  };
+
+  // Redirect to pre-screen if not filled
   const handleRegister = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -52,6 +61,20 @@ const Register = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const phone = phoneRef.current.value;
+
+    // Check if user answered questions
+    if (!userAnswers) {
+      Swal.fire({
+        title: "Please Complete the Pre-screen Form",
+        text: "You need to fill out the questions before registering.",
+        icon: "warning",
+        confirmButtonText: "Go to Pre-screen",
+      }).then(() => {
+        router.push("/preScreen");
+      });
+      setIsLoading(false);
+      return;
+    }
 
     // Basic field validations
     if (!isEmailValid(email)) {
@@ -90,20 +113,25 @@ const Register = () => {
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      await setDoc(doc(db, "users", user.uid), {
+
+      // Add user data to Firestore
+      const userData = {
         firstName,
         lastName,
         email,
         phone,
         role: 2,
-        _id:user.uid
-      });
+        _id: user.uid,
+        answers: userAnswers, // Store answers from pre-screen
+      };
+
+      await setDoc(doc(db, "users", user.uid), userData);
 
       Swal.fire({
         title: "Success!",
         text: "Registration successful.",
         icon: "success",
-        confirmButtonText: "Okay"
+        confirmButtonText: "Okay",
       }).then(() => {
         router.push("/login");
       });
@@ -121,11 +149,15 @@ const Register = () => {
         title: "Error!",
         text: error.message,
         icon: "error",
-        confirmButtonText: "Try Again"
+        confirmButtonText: "Try Again",
       });
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    checkUserAnswers(); // Check if user answered the pre-screen questions
+  }, []);
 
   return (
     <>
