@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../reducers/authSlice";
-import { setSlots } from "../reducers/slotslice";  // Import setSlots action
+import { setSlots } from "../reducers/slotslice";
 import Slot from "../Components/slot";
 import Slots from "../Components/slot/slots";
 
@@ -13,26 +13,23 @@ const DoctorPage = () => {
   const { data: session, status } = useSession();
   const [onlineStatus, setOnlineStatus] = useState(null);
   const online = useSelector((state) => state.auth.online);
-  // Get the online status from the Redux store using useSelector
-  const slots = useSelector((state) => state.slots);
+  const slots = useSelector((state) => state.slots.slots);
 
+  // Fetch and dispatch slots from Redux whenever they change
   useEffect(() => {
     if (session && session.user.role === 1) {
       fetchUserOnlineStatus(session.user.uid);
       updateUserOnlineStatus(session.user.uid, true);
-
-      // Fetch and dispatch slots from Firebase for this doctor
       fetchAndDispatchSlots(session.user.uid);
 
-      // Cleanup function to mark the user offline when the component unmounts
       return () => {
         updateUserOnlineStatus(session.user.uid, false);
       };
     }
   }, [session]);
 
+  // When online status changes, update local state
   useEffect(() => {
-    // If online status changes in Redux, update the local onlineStatus state
     setOnlineStatus(online);
   }, [online]);
 
@@ -67,32 +64,34 @@ const DoctorPage = () => {
         const userData = docSnap.data();
         if (userData.slots) {
           const sortedSlots = Object.keys(userData.slots)
-            .sort((a, b) => new Date(a) - new Date(b)) // Sort dates in ascending order
+            .sort((a, b) => new Date(a) - new Date(b))
             .reduce((acc, date) => {
               acc[date] = userData.slots[date];
               return acc;
             }, {});
-          
-          dispatch(setSlots(sortedSlots)); 
+            console.log(sortedSlots, 'sortedSlots')
+          dispatch(setSlots(sortedSlots));
         }
       }
     } catch (error) {
       console.error("Error fetching slots:", error);
     }
   };
-  
 
+  // Ensure the component only renders after session is loaded
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
+  // Ensure the user has the correct role
   if (!session || session.user.role !== 1) {
     return <div>Unauthorized Access</div>;
   }
 
   return (
     <div>
-      <Slots slots={slots?.slots}/>
+      {/* Pass the updated slots from Redux to the Slots component */}
+      <Slots slots={slots} />
       <Slot userId={session.user.uid} />
     </div>
   );
