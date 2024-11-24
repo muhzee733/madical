@@ -4,13 +4,16 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import { signIn, useSession } from "next-auth/react";
+import {setUser, setLoading} from '../reducers/authSlice';
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const { data: session, status } = useSession();
+  const loading = useSelector((state) => state.auth.loading);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -20,7 +23,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
@@ -30,7 +33,7 @@ const Login = () => {
         email,
         password,
       });
-      setIsLoading(false);
+      setLoading(false);
       if (result?.status === 200) {
         Swal.fire({
           title: "Success!",
@@ -54,9 +57,10 @@ const Login = () => {
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.role !== undefined) {
+      dispatch(setUser(session.user))
       router.push("/adminDashboard");
     }
-  }, [status, session, router]);
+  }, [status, session, router, dispatch]);
 
   return (
     <>
@@ -118,9 +122,9 @@ const Login = () => {
                     type="submit"
                     className="vs-btn"
                     style={{ width: "100%", borderRadius: "30px" }}
-                    disabled={isLoading}
+                    disabled={loading}
                   >
-                    {isLoading ? "Logging in..." : "Login"}
+                    {loading ? "Logging in..." : "Login"}
                   </button>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">

@@ -1,4 +1,3 @@
-// src/reducers/slotsSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -10,13 +9,10 @@ const slotsSlice = createSlice({
   initialState,
   reducers: {
     setSlots: (state, action) => {
-      state.slots = action.payload; // Set slots fetched from Firebase
-    },
-    resetSlots: (state) => {
-      state.slots = []; // Reset slots if needed
-    },
+      state.slots = action.payload;
+    }
   },
 });
 
-export const { setSlots, resetSlots } = slotsSlice.actions;
+export const { setSlots } = slotsSlice.actions;
 export default slotsSlice.reducer;

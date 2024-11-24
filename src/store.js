@@ -1,29 +1,35 @@
-// store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
+import { createTransform } from 'redux-persist';
+import CryptoJS from 'crypto-js';
+
 import rootReducer from './reducers/authSlice';
 import userReducer from './reducers/usersSlice';
 import slotReducer from './reducers/slotslice';
 import patientReducer from "./reducers/patientSlice";
 
-import CryptoJS from 'crypto-js';
-
 const secretKey = '4!bB7eP#j0j&8nQ@r';
 
-const encryptor = {
-  in: (state) => {
-    const stateString = JSON.stringify(state);
+// Create custom transform
+const encryptor = createTransform(
+  (inboundState) => {
+    const stateString = JSON.stringify(inboundState);
     const encrypted = CryptoJS.AES.encrypt(stateString, secretKey).toString();
     return encrypted;
   },
-  out: (state) => {
-    const bytes = CryptoJS.AES.decrypt(state, secretKey);
-    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-    return JSON.parse(decrypted);
-  },
-};
+  (outboundState) => {
+    try {
+      const bytes = CryptoJS.AES.decrypt(outboundState, secretKey);
+      const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+      return JSON.parse(decrypted);
+    } catch (error) {
+      console.error("Decryption failed:", error);
+      return {};
+    }
+  }
+);
 
 const persistConfig = {
   key: 'root',
@@ -31,7 +37,6 @@ const persistConfig = {
   transforms: [encryptor],
 };
 
-// Combine reducers
 const rootReducerCombined = combineReducers({
   auth: rootReducer,
   users: userReducer,
@@ -39,7 +44,6 @@ const rootReducerCombined = combineReducers({
   patient: patientReducer
 });
 
-// Apply persisted reducer to the combined reducers
 const persistedReducer = persistReducer(persistConfig, rootReducerCombined);
 
 export const store = configureStore({

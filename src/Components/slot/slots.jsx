@@ -1,37 +1,39 @@
-import React from 'react';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { format } from "date-fns";
 
-const SlotsCalendar = ({ slots }) => {
+const SlotsCalendar = ({ slots, isLoading }) => {
+
   return (
     <div className="container mt-4">
       <h3 className="mb-4">Booked Slots</h3>
-      {Object.keys(slots).length > 0 ? (
-        <div className="row">
-          {Object.keys(slots).map((date) => (
-            <div key={date} className="col-md-4 mb-3">
-              <div className="card shadow-sm">
-                <div className="card-header bg-primary text-white">
-                  <span>Date:</span>
-                  <span>    </span>
-                  <span>{date}</span>
-                </div>
-                <div className="card-body">
-                  {slots[date].length > 0 ? (
-                    <ul className="list-group">
-                      {slots[date].map((time, index) => (
-                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                          {time}
-                          <span className="badge bg-info text-white">{time}</span>
-                        </li>
-                      ))}
-                    </ul>
+      {isLoading ? (
+        <p>Loading Time Slots...</p>
+      ) : slots.length > 0 ? (
+        <Table striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time Slots</th>
+            </tr>
+          </thead>
+          <tbody>
+            {slots.map((slot, index) => (
+              <tr key={index}>
+                <td>{slot.date}</td>
+                <td>
+                  {slot.slots.length > 0 ? (
+                    slot.slots.map((time, timeIndex) => (
+                      <p key={timeIndex}>{time}</p>
+                    ))
                   ) : (
-                    <p className="text-muted">No available slots for this date.</p>
+                    <p>No slots available</p>
                   )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       ) : (
         <p>No slots available.</p>
       )}

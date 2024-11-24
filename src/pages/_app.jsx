@@ -1,5 +1,5 @@
 // pages/_app.js
-import React, { useEffect } from "react";
+import React from "react";
 import { Provider, useDispatch } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../store";

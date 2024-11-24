@@ -1,69 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
-import { setSlots } from "../reducers/slotslice";
-import Slot from "../Components/slot";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import Slots from "../Components/slot/slots";
+import Slot from '../Components/slot';
+import {setSlots} from '../reducers/slotslice';
+import { useDispatch, useSelector } from "react-redux";
 
 const DoctorPage = () => {
-  const dispatch = useDispatch();
   const { data: session, status } = useSession();
-  const [isLoading, setIsLoading] = useState(true); // Loading state for slots
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const slots = useSelector((state) => state.slots.slots);
 
-  // Fetch and dispatch slots from Redux whenever they change
   useEffect(() => {
-    if (session && session.user.role === 1) {
-      fetchAndDispatchSlots(session.user.uid);
+    if (status === "loading") {
+      return;
     }
-  }, [session]);
-
-  const fetchAndDispatchSlots = async (userId) => {
-    try {
-      const userRef = doc(db, "users", userId);
-      const docSnap = await getDoc(userRef);
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        if (userData.slots) {
-          const sortedSlots = Object.keys(userData.slots)
-            .sort((a, b) => new Date(a) - new Date(b))
-            .reduce((acc, date) => {
-              acc[date] = userData.slots[date];
-              return acc;
-            }, {});
-          dispatch(setSlots(sortedSlots));
-        }
-      }
-      setIsLoading(false); // Once slots are fetched, set loading to false
-    } catch (error) {
-      console.error("Error fetching slots:", error);
-      setIsLoading(false); // Set loading to false even if there is an error
+    if (!session || session.user.role !== 1) {
+      router.push("/unauthorized");
+    } else {
+      const fetchSlots = async () => {
+        setIsLoading(true);
+        const slotsCollection = collection(db, "slots");
+        const doctorSlotsQuery = query(
+          slotsCollection,
+          where("doctorId", "==", session.user.uid)
+        );
+        const slotsSnapshot = await getDocs(doctorSlotsQuery);
+        const slotsList = slotsSnapshot.docs.map((doc) => doc.data());
+        dispatch(setSlots(slotsList))
+        console.log(slotsList);
+        setIsLoading(false);
+      };
+      fetchSlots();
     }
-  };
+  }, [session, status, router,dispatch]);
 
-  // Ensure the component only renders after session is loaded
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
-  // Ensure the user has the correct role
-  if (!session || session.user.role !== 1) {
-    return <div>Unauthorized Access</div>;
-  }
-
   return (
     <div>
-      {isLoading ? (
-        <div>Loading slots...</div> // Show loading indicator for slots
-      ) : (
-        <>
-          {/* Pass the updated slots from Redux to the Slots component */}
-          <Slots slots={slots} />
-          <Slot userId={session.user.uid} />
-        </>
-      )}
+       <Slots slots={slots} isLoading={isLoading} />
+       <Slot doctorId={session?.user?.uid}/>
     </div>
   );
 };
