@@ -8,7 +8,7 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../../firebase"; 
+import { db } from "../../../firebase";
 
 const PatientSlots = ({ loading, bookedSlots, patientid }) => {
   const [loadingSlots, setLoadingSlots] = useState({});
@@ -24,51 +24,55 @@ const PatientSlots = ({ loading, bookedSlots, patientid }) => {
 
   const handleBookSlot = async (slot, time) => {
     const loadingKey = `${slot.date}-${time}`;
-    setLoadingSlots(prevState => ({
+    setLoadingSlots((prevState) => ({
       ...prevState,
-      [loadingKey]: true
+      [loadingKey]: true,
     }));
-  
+
     const doctorId = slot.doctorId;
     const patientId = patientid;
     const createdAt = new Date().toISOString();
     const status = "Pending";
     const slotId = slot.id;
-  
-    const q = query(
-      collection(db, "appointments"),
-      where("date", "==", slot.date),
-      where("slots", "array-contains", time)
+
+    const slotQuery = query(
+      collection(db, "slots"),
+      where("doctorId", "==", doctorId),
+      where("date", "==", slot.date)
     );
-    const querySnapshot = await getDocs(q);
-  
-    if (!querySnapshot.empty) {
-      alert("This slot is already booked. Please choose a different slot.");
-      setLoadingSlots(prevState => ({
-        ...prevState,
-        [loadingKey]: false
-      }));
-      return;
-    }
-  
+
+    const slotSnapshot = await getDocs(slotQuery);
+    const slotDoc = slotSnapshot.docs[0];
+    const slotData = slotDoc.data();
+    const updatedSlots = slotData.slots.map((timeSlot) => {
+      if (timeSlot.time === time) {
+        return { ...timeSlot, isBooked: true };
+      }
+      return timeSlot;
+    });
+    await updateDoc(slotDoc.ref, {
+      slots: updatedSlots,
+    });
+
     const existingAppointmentQuery = query(
       collection(db, "appointments"),
       where("patientId", "==", patientId),
       where("date", "==", slot.date)
     );
+
     const existingAppointmentSnapshot = await getDocs(existingAppointmentQuery);
-  
+
     try {
       if (!existingAppointmentSnapshot.empty) {
         const existingAppointmentDoc = existingAppointmentSnapshot.docs[0];
         const existingAppointmentData = existingAppointmentDoc.data();
-  
+
         const existingSlots = Array.isArray(existingAppointmentData.slots)
           ? existingAppointmentData.slots
           : [];
-  
+
         const updatedSlots = [...existingSlots, time];
-  
+
         await updateDoc(existingAppointmentDoc.ref, {
           slots: updatedSlots,
         });
@@ -84,7 +88,7 @@ const PatientSlots = ({ loading, bookedSlots, patientid }) => {
           slotId,
           slots: [time],
         };
-  
+
         await addDoc(collection(db, "appointments"), appointmentData);
         alert("Appointment booked successfully!");
       }
@@ -92,14 +96,12 @@ const PatientSlots = ({ loading, bookedSlots, patientid }) => {
       console.error("Error booking appointment:", error);
       alert("Failed to book the appointment. Please try again.");
     } finally {
-      // Set loading state to false once the process is complete
-      setLoadingSlots(prevState => ({
+      setLoadingSlots((prevState) => ({
         ...prevState,
-        [loadingKey]: false
+        [loadingKey]: false,
       }));
     }
   };
-  
 
   return (
     <>
@@ -144,38 +146,39 @@ const TimeSlotCard = ({ slot, onBookSlot, loadingSlots }) => {
         <h5>{"Unknown Doctor"}</h5>
         <p>{"Unknown Location"}</p>
         <ul className="list-unstyled">
-          {slot.slots && slot.slots.length > 0 ? (
-            slot.slots.map((time, index) => {
-              const loadingKey = `${slot.date}-${time}`;
-              const isLoading = loadingSlots[loadingKey];
-
-              return (
-                <li
-                  key={index}
-                  className="d-flex justify-content-between align-items-center mb-2"
-                >
-                  <span>{time || "N/A"}</span>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    disabled={isLoading}
-                    onClick={() => onBookSlot(time)}
+          {slot.slots.length > 0 ? (
+            slot.slots
+              .filter((timeSlot) => !timeSlot.isBooked)
+              .map((timeSlot, index) => {
+                const loadingKey = `${slot.date}-${timeSlot.time}`;
+                const isLoading = loadingSlots[loadingKey];
+                return (
+                  <li
+                    key={index}
+                    className="d-flex justify-content-between align-items-center mb-2"
                   >
-                    {isLoading ? (
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      "Book"
-                    )}
-                  </Button>
-                </li>
-              );
-            })
+                    <span>{timeSlot.time}</span>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      disabled={isLoading}
+                      onClick={() => onBookSlot(timeSlot.time)}
+                    >
+                      {isLoading ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        "Book"
+                      )}
+                    </Button>
+                  </li>
+                );
+              })
           ) : (
             <li>No available times for this date.</li>
           )}

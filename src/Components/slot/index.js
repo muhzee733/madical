@@ -3,14 +3,24 @@ import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { db } from "../../../firebase";
-import { collection, query, where, getDocs, updateDoc, doc, addDoc, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+  addDoc,
+  Timestamp,
+} from "firebase/firestore";
 import Swal from "sweetalert2";
 
+// Function to generate hourly slots
 const generateHourlySlots = () => {
-  const startHour = 8;
+  const startHour = 8; // Starting from 8 AM
   const slots = [];
   for (let i = startHour; i < startHour + 12; i++) {
-    const slotTime = new Date().setHours(i, 0, 0, 0); 
+    const slotTime = new Date().setHours(i, 0, 0, 0);
     slots.push(format(slotTime, "hh:mm a"));
   }
   return slots;
@@ -23,24 +33,36 @@ const Slot = ({ doctorId }) => {
 
   const hourlySlots = generateHourlySlots();
 
+  // Function to fetch booked slots from Firestore
   const fetchBookedSlots = async (dateStr) => {
     const slotsCollectionRef = collection(db, "slots");
-    const q = query(slotsCollectionRef, where("doctorId", "==", doctorId), where("date", "==", dateStr));
+    const q = query(
+      slotsCollectionRef,
+      where("doctorId", "==", doctorId),
+      where("date", "==", dateStr)
+    );
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
       const existingDoc = querySnapshot.docs[0];
-      setBookedSlots(existingDoc.data().slots || []);
+      const bookedSlotsData = existingDoc.data().slots || [];
+      const bookedSlotsObj = bookedSlotsData.map((slot) => ({
+        time: slot.time,
+        isBooked: slot.isBooked,
+      }));
+      setBookedSlots(bookedSlotsObj);
     } else {
       setBookedSlots([]);
     }
   };
 
+  // Fetch booked slots when the selected date changes
   useEffect(() => {
     const dateStr = format(selectedDate, "yyyy-MM-dd");
     fetchBookedSlots(dateStr);
   }, [selectedDate]);
 
+  // Handle slot click to toggle selected status
   const handleSlotClick = (slot) => {
     const isSlotSelected = selectedSlots.includes(slot);
     const updatedSlots = isSlotSelected
@@ -50,6 +72,7 @@ const Slot = ({ doctorId }) => {
     setSelectedSlots(updatedSlots);
   };
 
+  // Handle form submission to save selected slots
   const handleSubmit = async () => {
     if (!selectedDate || selectedSlots.length === 0) {
       Swal.fire("Error", "Please select both a date and time slot.", "error");
@@ -58,26 +81,39 @@ const Slot = ({ doctorId }) => {
 
     const dateStr = format(selectedDate, "yyyy-MM-dd");
     const slotsCollectionRef = collection(db, "slots");
-    
-    const q = query(slotsCollectionRef, where("doctorId", "==", doctorId), where("date", "==", dateStr));
+
+    const q = query(
+      slotsCollectionRef,
+      where("doctorId", "==", doctorId),
+      where("date", "==", dateStr)
+    );
     const querySnapshot = await getDocs(q);
 
     try {
+      const slotsWithStatus = selectedSlots.map((slot) => ({
+        time: slot,
+        isBooked: false, // Default value for new slots
+      }));
+
       if (!querySnapshot.empty) {
         const existingDoc = querySnapshot.docs[0];
         const existingSlots = existingDoc.data().slots || [];
-        const updatedSlots = [...new Set([...existingSlots, ...selectedSlots])];
+        const updatedSlots = [
+          ...new Set([...existingSlots, ...slotsWithStatus]), // Merge new slots with existing ones
+        ];
 
-        await updateDoc(doc(db, "slots", existingDoc.id), { slots: updatedSlots });
+        await updateDoc(doc(db, "slots", existingDoc.id), {
+          slots: updatedSlots,
+        });
 
         Swal.fire("Success", "Slots updated successfully!", "success");
       } else {
         const slotData = {
           doctorId: doctorId,
           date: dateStr,
-          slots: selectedSlots,
+          slots: slotsWithStatus,
           isBooked: false,
-          createdAt: Timestamp.now()
+          createdAt: Timestamp.now(),
         };
 
         await addDoc(slotsCollectionRef, slotData);
@@ -85,10 +121,14 @@ const Slot = ({ doctorId }) => {
         Swal.fire("Success", "Slots added successfully!", "success");
       }
 
-      setSelectedSlots([]);
+      setSelectedSlots([]); // Clear selected slots after submission
     } catch (error) {
       console.error("Error updating slots:", error);
-      Swal.fire("Error", "Failed to update slots. Please try again later.", "error");
+      Swal.fire(
+        "Error",
+        "Failed to update slots. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -114,23 +154,31 @@ const Slot = ({ doctorId }) => {
 
               <h5>Hourly Slots:</h5>
               <div className="row">
-                {hourlySlots.map((slot) => (
-                  <div key={slot} className="col-4 mb-2">
-                    <button
-                      onClick={() => handleSlotClick(slot)}
-                      className={`btn w-100 ${
-                        selectedSlots.includes(slot)
-                          ? "bg-primary text-white"
-                          : bookedSlots.includes(slot)
-                          ? "btn-danger"
-                          : "btn-outline-primary"
-                      }`}
-                      disabled={bookedSlots.includes(slot)}
-                    >
-                      {slot}
-                    </button>
-                  </div>
-                ))}
+                {hourlySlots.map((slot) => {
+                  // Check if the slot is booked
+                  console.log(bookedSlots)
+                  const isBooked = bookedSlots.some(
+                    (bookedSlot) => bookedSlot.time === slot
+                  );
+                  console.log(isBooked)
+                  return (
+                    <div key={slot} className="col-4 mb-2">
+                      <button
+                        onClick={() => handleSlotClick(slot)}
+                        className={`btn w-100 ${
+                          selectedSlots.includes(slot)
+                            ? "bg-primary text-white"
+                            : isBooked
+                            ? "btn-danger"
+                            : "btn-outline-primary"
+                        }`}
+                        disabled={isBooked}
+                      >
+                        {slot}
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
 
               <p>

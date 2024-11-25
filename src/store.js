@@ -9,6 +9,7 @@ import rootReducer from './reducers/authSlice';
 import userReducer from './reducers/usersSlice';
 import slotReducer from './reducers/slotslice';
 import patientReducer from "./reducers/patientSlice";
+import appointmentReducer from './reducers/appointmentsSlice';
 
 const secretKey = '4!bB7eP#j0j&8nQ@r';
 
@@ -41,7 +42,8 @@ const rootReducerCombined = combineReducers({
   auth: rootReducer,
   users: userReducer,
   slots: slotReducer,
-  patient: patientReducer
+  patient: patientReducer,
+  appointment:appointmentReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducerCombined);
