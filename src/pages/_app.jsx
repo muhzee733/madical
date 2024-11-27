@@ -4,7 +4,6 @@ import { Provider, useDispatch } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../store";
 import "../assets/css/style.css";
-import "../assets/css/fontawesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SessionProvider } from "next-auth/react"; 
 
