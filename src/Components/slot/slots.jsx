@@ -18,7 +18,6 @@ const SlotsCalendar = ({ slots, isLoading }) => {
           </thead>
           <tbody>
             {slots.map((slot, index) => {
-              console.log(slot)
               return (
                 <>
                   <tr key={index}>

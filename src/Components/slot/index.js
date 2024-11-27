@@ -155,8 +155,6 @@ const Slot = ({ doctorId }) => {
               <h5>Hourly Slots:</h5>
               <div className="row">
                 {hourlySlots.map((slot) => {
-                  // Check if the slot is booked
-                  console.log(bookedSlots)
                   const isBooked = bookedSlots.some(
                     (bookedSlot) => bookedSlot.time === slot
                   );

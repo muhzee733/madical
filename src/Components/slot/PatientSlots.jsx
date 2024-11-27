@@ -150,6 +150,7 @@ const TimeSlotCard = ({ slot, onBookSlot, loadingSlots }) => {
             slot.slots
               .filter((timeSlot) => !timeSlot.isBooked)
               .map((timeSlot, index) => {
+                console.log(timeSlot, 'timeSlot')
                 const loadingKey = `${slot.date}-${timeSlot.time}`;
                 const isLoading = loadingSlots[loadingKey];
                 return (
