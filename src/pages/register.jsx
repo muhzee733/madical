@@ -12,7 +12,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [userAnswers, setUserAnswers] = useState(null); // Track if questions are answered
+  const [userAnswers, setUserAnswers] = useState(null);
 
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);

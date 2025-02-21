@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import { signIn, useSession } from "next-auth/react";
-import {setUser, setLoading} from '../reducers/authSlice';
+import { setUser, setLoading } from "../reducers/authSlice";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -56,9 +56,9 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (status === "authenticated" && session?.user?.role !== undefined) {
-      dispatch(setUser(session.user))
-      router.push("/adminDashboard");
+    if (status === "authenticated") {
+      dispatch(setUser(session.user));
+      router.push("/patient");
     }
   }, [status, session, router, dispatch]);
 
