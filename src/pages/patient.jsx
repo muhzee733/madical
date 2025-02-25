@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
-// import Layout from "../components/Layout/Layout";
+import axios from "axios";
+import Head from "next/head";
 
 const Patient = () => {
   const { data: session, status } = useSession();
@@ -10,16 +11,27 @@ const Patient = () => {
 
   useEffect(() => {
     if (status === "loading") return;
-    if (!session || session.user.role !== 2) {
-      router.push("/unauthorized");
-    }
   }, [status, session, router]);
 
   return (
-    <div className="container">
-      <h1>Book Slot To Meet Doctor!</h1>
-      <InlineWidget url="https://calendly.com/geeklies-agency/test?preview_source=et_card&month=2025-02" />
-    </div>
+    <>
+      <Head>
+        <title>Doctor Dashboard</title>
+      </Head>
+      <div className="container py-5">
+        <h1 className="text-center mb-4">Book a Slot to Meet Doctor!</h1>
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10 col-sm-12">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h5 className="card-title text-center mb-4">Available Slots</h5>
+                <InlineWidget url="https://calendly.com/cool-saa733/testing_123" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

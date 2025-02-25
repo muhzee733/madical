@@ -1,74 +1,136 @@
 import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { db } from "../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import Slots from "../Components/slot/slots";
-import Slot from "../Components/slot";
-import { setSlots } from "../reducers/slotslice";
-import { setAppointments } from "../reducers/appointmentsSlice";
-import { useDispatch, useSelector } from "react-redux";
-import Appointments from "../Components/appointments/appointments";
+import Head from "next/head";
 
-const DoctorPage = () => {
+const MeetingsList = () => {
+  const [meetings, setMeetings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { data: session, status } = useSession();
-  const dispatch = useDispatch();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const slots = useSelector((state) => state.slots.slots);
-  const appointments = useSelector((state) => state.appointment.appointments);
 
   useEffect(() => {
-    if (status === "loading") {
-      return;
-    }
-    if (!session || session.user.role !== 1) {
-      router.push("/unauthorized");
-    } else {
-      const fetchSlotsAndAppointments = async () => {
-        setIsLoading(true);
-        
-        // Fetch slots
-        const slotsCollection = collection(db, "slots");
-        const doctorSlotsQuery = query(slotsCollection, where("doctorId", "==", session.user.uid));
-        const slotsSnapshot = await getDocs(doctorSlotsQuery);
-        const slotsList = slotsSnapshot.docs.map((doc) => doc.data());
-        dispatch(setSlots(slotsList)); 
+    if (status === "loading") return;
+  }, [status, session, router]);
 
-        // Fetch appointments
-        const appointmentsCollection = collection(db, "appointments");
-        const doctorAppointmentsQuery = query(
-          appointmentsCollection,
-          where("doctorId", "==", session.user.uid)
+  useEffect(() => {
+    const fetchMeetings = async () => {
+      try {
+        const ORGANIZATION_ID = "3e3ec62d-5360-4c21-815b-95c4c5f59588";
+
+        const response = await axios.get(
+          "https://api.calendly.com/scheduled_events",
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_NEXT_TOKKEN}`,
+              "Content-Type": "application/json",
+            },
+            params: {
+              organization: `https://api.calendly.com/organizations/${ORGANIZATION_ID}`,
+            },
+          }
         );
-        const appointmentsSnapshot = await getDocs(doctorAppointmentsQuery);
-        const appointmentsList = appointmentsSnapshot.docs.map((doc) => doc.data());
-        dispatch(setAppointments(appointmentsList)); 
 
-        setIsLoading(false);
-      };
-      
-      fetchSlotsAndAppointments();
-    }
-  }, [session, status, router, dispatch]);
+        // Get current date/time
+        const now = new Date();
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+        // Filter and sort meetings
+        const futureMeetings = response.data.collection
+          .filter((meeting) => new Date(meeting.start_time) > now)
+          .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+
+        setMeetings(futureMeetings);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMeetings();
+  }, []);
+
+  const handleLogout = async () => {
+    // This will log out the user and remove the session
+    await signOut({ callbackUrl: "/login" }); // You can set the desired callback URL after logout
+  };
+
+  if (loading)
+    return (
+      <div>
+        <p>Loading meetings...</p>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="h-100 w-100 d-flex align-items-center justify-content-between">
+        <p>{error}</p>
+      </div>
+    );
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-lg-6">
-          <Slots slots={slots} isLoading={isLoading} />
-        </div>
-        <div className="col-lg-6">
-          <Appointments appointments={appointments} />
-        </div>
+    <>
+      <Head>
+        <title>Doctor Dashboard</title>
+      </Head>
+      <div className="container mt-4">
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="btn btn-danger btn-sm position-absolute"
+          style={{ top: "20px", right: "20px" }}
+        >
+          Logout
+        </button>
+        
+        <h2 className="text-center mb-4">Scheduled Meetings</h2>
+        {meetings.length === 0 ? (
+          <p className="text-center">No future meetings found.</p>
+        ) : (
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Meeting Name</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Join Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {meetings.map((meeting) => {
+                  const startDate = new Date(meeting.start_time);
+                  return (
+                    <tr key={meeting.uri}>
+                      <td>{meeting.name}</td>
+                      <td>{startDate.toLocaleDateString()}</td>
+                      <td>{startDate.toLocaleTimeString()}</td>
+                      <td>
+                        {meeting.location?.join_url ? (
+                          <a
+                            href={meeting.location.join_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary btn-sm"
+                          >
+                            Join Meeting
+                          </a>
+                        ) : (
+                          <span>No link available</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
-      <Slot doctorId={session?.user?.uid} />
-    </div>
+    </>
   );
 };
 
-export default DoctorPage;
+export default MeetingsList;

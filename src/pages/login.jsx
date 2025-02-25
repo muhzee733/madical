@@ -57,8 +57,19 @@ const Login = () => {
 
   useEffect(() => {
     if (status === "authenticated") {
-      dispatch(setUser(session.user));
-      router.push("/patient");
+      switch (session.user.role) {
+        case 2:
+          router.push("/patient");
+          break;
+        case 1:
+          router.push("/doctor");
+          break;
+        case 0:
+          router.push("/admin");
+          break;
+        default:
+          router.push("/");
+      }
     }
   }, [status, session, router, dispatch]);
 

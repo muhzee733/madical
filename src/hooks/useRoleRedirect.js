@@ -62,6 +62,7 @@ const Login = () => {
   useEffect(() => {
     if (status === "authenticated" && session?.user?.role !== undefined) {
       const userRole = session.user.role;
+      console.log(userRole, 'userRole')
 
       switch (userRole) {
         case 2:
