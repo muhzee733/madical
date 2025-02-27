@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "../header";
-import Sidebae from "../Sidebae";
+// import Header from "../header";
+// import Sidebae from "../Sidebae";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <aside id="sidebar" className="sidebar">
-        <Sidebae />
+        {/* <Sidebae /> */}
       </aside>
       <main id="main" className="main">
         {children}
