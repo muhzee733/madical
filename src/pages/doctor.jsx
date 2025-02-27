@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
-import ChatBox from "../components/ChatBox";
+// import ChatBox from "../components/ChatBox";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -129,7 +129,7 @@ const MeetingsList = () => {
         )}
       </div>
 
-      <ChatBox chatOpen={chatOpen} onClose={handleChatToggle} />
+      {/* <ChatBox chatOpen={chatOpen} onClose={handleChatToggle} /> */}
     </>
   );
 };
