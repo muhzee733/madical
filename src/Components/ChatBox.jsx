@@ -11,7 +11,7 @@ import {
 import { db } from "../../firebase";
 import { useSession } from "next-auth/react";
 
-const Chat = ({ chatOpen, onClose }) => {
+const ChatBox = ({ chatOpen, onClose }) => {
   const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { data: session } = useSession();
@@ -78,4 +78,4 @@ const Chat = ({ chatOpen, onClose }) => {
   );
 };
 
-export default Chat;
+export default ChatBox;
