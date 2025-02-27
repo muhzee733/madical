@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
-import ChatBox from "../components/Chat";
+import ChatBox from "@/components/Chat";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
