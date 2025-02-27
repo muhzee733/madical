@@ -22,6 +22,7 @@ export async function POST(req) {
       start_time: event_start_time,
       status: "scheduled",
     });
+    console.log("Work")
 
     return NextResponse.json({ message: "Meeting stored successfully!" });
   } catch (error) {
