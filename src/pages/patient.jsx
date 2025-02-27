@@ -12,11 +12,12 @@ const Patient = () => {
   useEffect(() => {
     if (status === "loading") return;
   }, [status, session, router]);
+  
 
   return (
     <>
       <Head>
-        <title>Doctor Dashboard</title>
+        <title>Patient Dashboard</title>
       </Head>
       <div className="container py-5">
         <h1 className="text-center mb-4">Book a Slot to Meet Doctor!</h1>

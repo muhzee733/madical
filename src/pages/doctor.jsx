@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import ChatBox from "../components/Chat";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const [chatOpen, setChatOpen] = useState(false);
 
-  useEffect(() => {
-    if (status === "loading") return;
-  }, [status, session, router]);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const fetchMeetings = async () => {
@@ -33,10 +30,7 @@ const MeetingsList = () => {
           }
         );
 
-        // Get current date/time
         const now = new Date();
-
-        // Filter and sort meetings
         const futureMeetings = response.data.collection
           .filter((meeting) => new Date(meeting.start_time) > now)
           .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
@@ -53,22 +47,15 @@ const MeetingsList = () => {
   }, []);
 
   const handleLogout = async () => {
-    // This will log out the user and remove the session
-    await signOut({ callbackUrl: "/login" }); // You can set the desired callback URL after logout
+    await signOut({ callbackUrl: "/login" });
   };
 
-  if (loading)
-    return (
-      <div>
-        <p>Loading meetings...</p>
-      </div>
-    );
-  if (error)
-    return (
-      <div className="h-100 w-100 d-flex align-items-center justify-content-between">
-        <p>{error}</p>
-      </div>
-    );
+  const handleChatToggle = () => {
+    setChatOpen(!chatOpen);
+  };
+
+  if (status === "loading") return <p>Loading authentication...</p>;
+  if (!session) return null;
 
   return (
     <>
@@ -76,7 +63,6 @@ const MeetingsList = () => {
         <title>Doctor Dashboard</title>
       </Head>
       <div className="container mt-4">
-        {/* Logout Button */}
         <button
           onClick={handleLogout}
           className="btn btn-danger btn-sm position-absolute"
@@ -84,9 +70,13 @@ const MeetingsList = () => {
         >
           Logout
         </button>
-        
+
         <h2 className="text-center mb-4">Scheduled Meetings</h2>
-        {meetings.length === 0 ? (
+        {loading ? (
+          <p>Loading meetings...</p>
+        ) : error ? (
+          <p className="text-danger">{error}</p>
+        ) : meetings.length === 0 ? (
           <p className="text-center">No future meetings found.</p>
         ) : (
           <div className="table-responsive">
@@ -97,6 +87,7 @@ const MeetingsList = () => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>Join Link</th>
+                  <th>Chat</th>
                 </tr>
               </thead>
               <tbody>
@@ -121,6 +112,14 @@ const MeetingsList = () => {
                           <span>No link available</span>
                         )}
                       </td>
+                      <td>
+                        <button
+                          className="btn btn-primary btn-sm"
+                          onClick={handleChatToggle}
+                        >
+                          Chat Now
+                        </button>
+                      </td>
                     </tr>
                   );
                 })}
@@ -129,6 +128,8 @@ const MeetingsList = () => {
           </div>
         )}
       </div>
+
+      <ChatBox chatOpen={chatOpen} onClose={handleChatToggle} />
     </>
   );
 };

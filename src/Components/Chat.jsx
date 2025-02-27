@@ -1,60 +1,81 @@
+// components/ChatBox.js
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase";  // Import Firebase Firestore
+import {
+  collection,
+  addDoc,
+  orderBy,
+  query,
+  serverTimestamp,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "../../firebase";
+import { useSession } from "next-auth/react";
 
-const Chat = ({ meetingId, userRole }) => {
-  const [messages, setMessages] = useState([]);
+const ChatBox = ({ chatOpen, onClose }) => {
+  const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const { data: session } = useSession();
 
-  // Fetch messages from Firestore
   useEffect(() => {
-    const unsubscribe = db
-      .collection("messages")
-      .where("meetingId", "==", meetingId)
-      .orderBy("timestamp", "asc")
-      .onSnapshot((snapshot) => {
-        const messagesData = snapshot.docs.map((doc) => doc.data());
-        setMessages(messagesData);
-      });
+    const q = query(collection(db, "messages"), orderBy("timestamp", "asc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setChatMessages(snapshot.docs.map((doc) => doc.data()));
+    });
+    return () => unsubscribe();
+  }, []);
 
-    return () => unsubscribe(); // Cleanup when component unmounts
-  }, [meetingId]);
-
-  const sendMessage = async () => {
-    if (newMessage.trim()) {
-      await db.collection("messages").add({
-        meetingId,
-        from: userRole, // e.g., 'doctor' or 'patient'
-        to: userRole === "doctor" ? "patient" : "doctor",
-        message: newMessage,
-        timestamp: new Date(),
+  const handleSendMessage = async () => {
+    if (newMessage.trim() === "") return;
+    try {
+      await addDoc(collection(db, "messages"), {
+        uid: session?.user?.id || session?.user?.uid,
+        displayName: session?.user?.name || "Anonymous",
+        text: newMessage,
+        timestamp: serverTimestamp(),
       });
-      setNewMessage(""); // Clear the input field
+      setNewMessage("");
+    } catch (error) {
+      console.error("Error sending message:", error);
     }
   };
 
+  if (!chatOpen) return null;
+
   return (
-    <div>
-      <div style={{ marginBottom: "20px" }}>
-        <h3>Chat</h3>
-        <div style={{ maxHeight: "300px", overflowY: "scroll" }}>
-          {messages.map((msg, index) => (
-            <div key={index} style={{ margin: "10px 0" }}>
-              <strong>{msg.from}:</strong> {msg.message}
-            </div>
-          ))}
-        </div>
+    <div className="chat-box">
+      <div className="chat-header">
+        <strong>Chat</strong>
+        <button className="close-chat" onClick={onClose}>
+          ✖
+        </button>
       </div>
-      <div>
+      <div className="chat-body">
+        {chatMessages.map((msg, index) => (
+          <div
+            key={index}
+            className={`chat-message ${
+              msg.uid === (session?.user?.id || session?.user?.uid) ? "user" : "other"
+            }`}
+          >
+            <strong>{msg.displayName}:</strong> {msg.text}
+          </div>
+        ))}
+      </div>
+      <div className="chat-footer">
         <input
           type="text"
+          className="chat-input"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type your message"
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          placeholder="Type a message..."
         />
-        <button onClick={sendMessage}>Send</button>
+        <button className="send-btn" onClick={handleSendMessage}>
+          Send
+        </button>
       </div>
     </div>
   );
 };
 
-export default Chat;
+export default ChatBox;
