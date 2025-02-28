@@ -26,7 +26,7 @@ const Patient = () => {
             <div className="card shadow-sm">
               <div className="card-body">
                 <h5 className="card-title text-center mb-4">Available Slots</h5>
-                <InlineWidget url="https://calendly.com/cool-saa733/testing_123" />
+                <InlineWidget url="https://calendly.com/cool-saa733/new-meeting" />
               </div>
             </div>
           </div>
