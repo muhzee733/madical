@@ -24,6 +24,7 @@ export default async function handler(req, res) {
 
       // Save to Firestore
       await addDoc(collection(db, "meetings"), meetingData);
+      console.log('Working')
       return res.status(200).json({ success: true, data: meetingData });
     }
 
