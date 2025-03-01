@@ -42,6 +42,7 @@ const Login = () => {
           timer: 1500,
           showConfirmButton: false,
         });
+        router.push("/patient");
       } else {
         Swal.fire({
           title: "Error!",
@@ -54,24 +55,6 @@ const Login = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      switch (session.user.role) {
-        case 2:
-          router.push("/patient");
-          break;
-        case 1:
-          router.push("/doctor");
-          break;
-        case 0:
-          router.push("/admin");
-          break;
-        default:
-          router.push("/");
-      }
-    }
-  }, [status, session, router, dispatch]);
 
   return (
     <>

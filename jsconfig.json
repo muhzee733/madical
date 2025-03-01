@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",  // Root directory
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],  // For src folder
+      "@/firebase": ["./firebase.js"]  // Alias to your firebase.js in the root
     }
   }
 }

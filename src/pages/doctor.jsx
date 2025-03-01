@@ -1,41 +1,38 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
-// import ChatBox from "../components/ChatBox";
+import { db } from "../../firebase";
+import { collection, query, getDocs } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [chatOpen, setChatOpen] = useState(false);
+  const router = useRouter();
+  const handleRowClick = (meetingId) => {
+    router.push(`/meetings/${meetingId}`);
+  };
 
   const { data: session, status } = useSession();
 
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const ORGANIZATION_ID = "3e3ec62d-5360-4c21-815b-95c4c5f59588";
+        if (!session?.user?.uid) {
+          return;
+        }
 
-        const response = await axios.get(
-          "https://api.calendly.com/scheduled_events",
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_NEXT_TOKKEN}`,
-              "Content-Type": "application/json",
-            },
-            params: {
-              organization: `https://api.calendly.com/organizations/${ORGANIZATION_ID}`,
-            },
-          }
-        );
+        const meetingsRef = collection(db, "meetings");
+        const q = query(meetingsRef);
 
-        const now = new Date();
-        const futureMeetings = response.data.collection
-          .filter((meeting) => new Date(meeting.start_time) > now)
-          .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+        const querySnapshot = await getDocs(q);
+        const meetingsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-        setMeetings(futureMeetings);
+        setMeetings(meetingsData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -43,15 +40,13 @@ const MeetingsList = () => {
       }
     };
 
-    fetchMeetings();
-  }, []);
+    if (session) {
+      fetchMeetings();
+    }
+  }, [session]);
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/login" });
-  };
-
-  const handleChatToggle = () => {
-    setChatOpen(!chatOpen);
   };
 
   if (status === "loading") return <p>Loading authentication...</p>;
@@ -83,53 +78,28 @@ const MeetingsList = () => {
             <table className="table table-striped table-bordered">
               <thead className="thead-dark">
                 <tr>
-                  <th>Meeting Name</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Join Link</th>
-                  <th>Chat</th>
+                  <th>Meeting ID</th>
+                  <th>Patient Name</th>
+                  <th>Patient Email</th>
+                  <th>Status</th>
+                  <th>Timezone</th>
                 </tr>
               </thead>
               <tbody>
-                {meetings.map((meeting) => {
-                  const startDate = new Date(meeting.start_time);
-                  return (
-                    <tr key={meeting.uri}>
-                      <td>{meeting.name}</td>
-                      <td>{startDate.toLocaleDateString()}</td>
-                      <td>{startDate.toLocaleTimeString()}</td>
-                      <td>
-                        {meeting.location?.join_url ? (
-                          <a
-                            href={meeting.location.join_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-primary btn-sm"
-                          >
-                            Join Meeting
-                          </a>
-                        ) : (
-                          <span>No link available</span>
-                        )}
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-primary btn-sm"
-                          onClick={handleChatToggle}
-                        >
-                          Chat Now
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                {meetings.map((meeting) => (
+                  <tr key={meeting.id} onClick={() => handleRowClick(meeting.id)} style={{ cursor: "pointer" }}>
+                    <td>{meeting.id}</td>
+                    <td>{meeting.inviteeName}</td>
+                    <td>{meeting.inviteeEmail}</td>
+                    <td>{meeting.status}</td>
+                    <td>{meeting.timezone}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         )}
       </div>
-
-      {/* <ChatBox chatOpen={chatOpen} onClose={handleChatToggle} /> */}
     </>
   );
 };

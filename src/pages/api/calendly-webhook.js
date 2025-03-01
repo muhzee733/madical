@@ -1,24 +1,62 @@
+import { db } from "../../../firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method Not Allowed" });
+    return res.status(405).json({ message: "Method Not Allowed" });
   }
 
   try {
-      const body = req.body;
-      console.log("Received webhook:", body);
+    const { event, payload, session } = req.body; // Assuming session is passed in the body
+    if (event === "invitee.created") {
+      const {
+        email,
+        name,
+        questions_and_answers,
+        scheduled_event,
+        cancel_url,
+        reschedule_url,
+        timezone,
+        status,
+      } = payload;
+      const {
+        created_at,
+        start_time,
+        end_time,
+        location,
+        name: eventName,
+        uri: eventUri,
+      } = scheduled_event;
 
-      // Check the event type
-      if (body.event === "invitee.created") {
-          console.log("Processing invitee.created event");
-          
-          // Your logic to handle the event
-          return res.status(200).json({ message: "Webhook received" });
-      }
+      const uid = session?.user?.uid;  // Retrieve session.user.uid
+      console.log(session.user)
 
-      return res.status(400).json({ error: "Unhandled event type" });
+      await addDoc(collection(db, "meetings"), {
+        eventType: event,
+        createdAt: new Date(created_at),
+        inviteeEmail: email,
+        inviteeName: name,
+        questionsAndAnswers: questions_and_answers,
+        eventDetails: {
+          name: eventName,
+          startTime: new Date(start_time),
+          endTime: new Date(end_time),
+          location: location,
+          uri: eventUri,
+        },
+        cancelUrl: cancel_url,
+        rescheduleUrl: reschedule_url,
+        timezone: timezone,
+        status: status,
+        userUid: uid, // Store the session user UID here
+      });
+    }
 
+    res
+      .status(200)
+      .json({ success: true, message: "Data stored successfully" });
   } catch (error) {
-      console.error("Error handling webhook:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error storing meeting:", error);
+    res.status(500).json({ success: false, error: error.message });
   }
 }
