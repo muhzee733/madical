@@ -1,11 +1,16 @@
 import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
-  const uid = localStorage.getItem("userUID");
+  const session = await getSession({ req });
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
+  if (!session || !session.user.uid) {
+    return res.status(401).json({ message: "User is not authenticated" });
+  }
+  const uid = session.user.uid;
 
   try {
     const { event, payload } = req.body;
