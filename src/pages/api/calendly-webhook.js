@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         uri: eventUri,
       } = scheduled_event;
 
-      const uid = session?.user?.uid; 
+      // const uid = session?.user?.uid; 
       await addDoc(collection(db, "meetings"), {
         eventType: event,
         createdAt: new Date(created_at),
@@ -41,13 +41,13 @@ export default async function handler(req, res) {
           startTime: new Date(start_time),
           endTime: new Date(end_time),
           location: location,
-          uri: eventUri,
+          // uri: eventUri,
         },
         cancelUrl: cancel_url,
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        userUid: uid, 
+        // userUid: uid, 
       });
     }
 
