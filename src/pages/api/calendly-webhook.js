@@ -1,8 +1,8 @@
 import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
-
 export default async function handler(req, res) {
+  const uid = localStorage.getItem("userUID");
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
@@ -45,6 +45,7 @@ export default async function handler(req, res) {
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
+        userId: uid,
       });
     }
 
