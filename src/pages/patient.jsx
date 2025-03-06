@@ -8,10 +8,6 @@ import Head from "next/head";
 const Patient = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  if (session?.user?.uid) {
-    localStorage.setItem("userUID", session.user.uid);
-  }
-
   useEffect(() => {
     if (status === "loading") return;
   }, [status, session, router]);

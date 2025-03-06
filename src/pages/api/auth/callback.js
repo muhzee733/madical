@@ -16,11 +16,10 @@ export default async function handler(req, res) {
       grant_type: "authorization_code",
       client_id: process.env.NEXT_PUBLIC_CALENDLY_CLIENT_ID,
       client_secret: process.env.NEXT_PUBLIC_CALENDLY_CLIENT_SECRET,
-      redirect_uri: "http://localhost:3000/api/auth/callback",
+      redirect_uri: "https://promedicine.com.au//api/auth/callback",
       code,
     });
 
-    console.log(response.data, 'data')
 
     const { access_token } = response.data;
 
