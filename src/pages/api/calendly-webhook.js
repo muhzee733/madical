@@ -1,15 +1,22 @@
 import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { getSession } from "next-auth/react"; // Import getSession for server-side session fetching
 
 export default async function handler(req, res) {
+  // Get the session from the request
+  const session = await getSession({ req });
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
   try {
-    const { event, payload, session } = req.body;
+    if (!session) {
+      return res.status(401).json({ success: false, message: "User not authenticated" });
+    }
+
+    const { event, payload } = req.body;
     if (event === "invitee.created") {
-      console.log(payload, 'payloadasas')
       const {
         email,
         name,
@@ -29,7 +36,9 @@ export default async function handler(req, res) {
         uri: eventUri,
       } = scheduled_event;
 
-      // const uid = session?.user?.uid; 
+      // Now using the session user ID
+      const userId = session.user.id; // Assuming session contains the user ID
+
       await addDoc(collection(db, "meetings"), {
         eventType: event,
         createdAt: new Date(created_at),
@@ -41,13 +50,12 @@ export default async function handler(req, res) {
           startTime: new Date(start_time),
           endTime: new Date(end_time),
           location: location,
-          // uri: eventUri,
         },
         cancelUrl: cancel_url,
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        // userUid: uid, 
+        userId: userId, // Store the user ID in Firestore
       });
     }
 
