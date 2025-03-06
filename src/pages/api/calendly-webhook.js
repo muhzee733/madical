@@ -8,40 +8,18 @@ export default async function handler(req, res) {
 
   try {
     const { event, payload, session } = req.body;
-
     if (event === "invitee.created") {
+      console.log(payload, 'payloadasas')
       const {
         email,
         name,
-        questions_and_answers = [],
+        questions_and_answers,
+        scheduled_event,
         cancel_url,
         reschedule_url,
         timezone,
         status,
       } = payload;
-
-      // Ensure event is present in payload
-      if (!payload.event) {
-        return res.status(400).json({ success: false, error: "Missing event URL in payload" });
-      }
-
-      // Fetch event details from Calendly API
-      const eventResponse = await fetch(payload.event, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer YOUR_CALENDLY_API_KEY`
-        }
-      });
-
-      if (!eventResponse.ok) {
-        throw new Error("Failed to fetch event details from Calendly");
-      }
-
-      const eventData = await eventResponse.json();
-      const scheduled_event = eventData.resource; // Adjust based on Calendly response structure
-
-      // Extract event details safely
       const {
         created_at,
         start_time,
@@ -49,33 +27,33 @@ export default async function handler(req, res) {
         location,
         name: eventName,
         uri: eventUri,
-      } = scheduled_event || {}; 
+      } = scheduled_event;
 
-      const uid = session?.user?.uid;
-
-      // Store in Firebase
+      const uid = session?.user?.uid; 
       await addDoc(collection(db, "meetings"), {
         eventType: event,
-        createdAt: created_at ? new Date(created_at) : new Date(),
+        createdAt: new Date(created_at),
         inviteeEmail: email,
         inviteeName: name,
         questionsAndAnswers: questions_and_answers,
         eventDetails: {
-          name: eventName || "Unknown Event",
-          startTime: start_time ? new Date(start_time) : null,
-          endTime: end_time ? new Date(end_time) : null,
-          location: location || "Not specified",
-          uri: eventUri || payload.event,
+          name: eventName,
+          startTime: new Date(start_time),
+          endTime: new Date(end_time),
+          location: location,
+          uri: eventUri,
         },
         cancelUrl: cancel_url,
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        userUid: uid,
+        userUid: uid, 
       });
     }
 
-    res.status(200).json({ success: true, message: "Data stored successfully" });
+    res
+      .status(200)
+      .json({ success: true, message: "Data stored successfully" });
   } catch (error) {
     console.error("Error storing meeting:", error);
     res.status(500).json({ success: false, error: error.message });
