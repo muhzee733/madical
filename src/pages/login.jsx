@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { data: session, status } = useSession();
-  console.log(session, "session");
+  console.log(session, "session login");
 
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +39,6 @@ const Login = () => {
           showConfirmButton: false,
         });
         router.push("/patient");
-        console.log('Work')
       } else {
         Swal.fire({
           title: "Error!",
