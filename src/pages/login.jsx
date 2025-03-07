@@ -113,9 +113,8 @@ const Login = () => {
                     type="submit"
                     className="vs-btn"
                     style={{ width: "100%", borderRadius: "30px" }}
-                    disabled={loading}
                   >
-                    {loading ? "Logging in..." : "Login"}
+                    Login
                   </button>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
