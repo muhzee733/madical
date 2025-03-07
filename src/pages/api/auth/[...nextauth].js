@@ -22,10 +22,13 @@ export default NextAuth({
             credentials.password
           );
           const user = userCredential.user;
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDoc = await getDoc(userDocRef);
+          const userRole = userDoc.exists() ? userDoc.data().role : 'user';
           return {
             uid: user.uid,
             email: user.email,
-            role: 2,
+            role: userRole,
           };
         } catch (error) {
           console.error("Error during authorization", error);
@@ -35,21 +38,20 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60,
-    updateAge: 24 * 60 * 60,
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
-      name: "next-auth.session-token",
+      name: 'next-auth.session-token',
       options: {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        path: "/",
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
       },
     },
   },
@@ -67,7 +69,7 @@ export default NextAuth({
       session.user.uid = token.uid;
       session.user.email = token.email;
       return session;
-    },
+    }
   },
   secret: process.env.NEXTAUTH_SECRET,
 });
