@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   }
   try {
     const { event, payload } = req.body;
+    console.log(payload, 'payload')
     if (event === "invitee.created") {
       const {
         email,
