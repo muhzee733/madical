@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
-import axios from "axios";
 import Head from "next/head";
 
 const Patient = () => {
   const { data: session, status } = useSession();
-  console.log(session)
+  console.log(session, "session");
   const router = useRouter();
+
   useEffect(() => {
-    if (status === "loading") return;
+    if (status === "loading") return; // Wait for session to load
+    if (status === "unauthenticated" || session?.user?.role !== 2) {
+      router.replace("/unauthorized"); // Redirect to unauthorized page
+    }
   }, [status, session, router]);
+
+  if (status === "loading") return <p>Loading...</p>; // Show loading state
+  if (!session || session.user.role !== 2) return null; // Prevent flickering
 
   return (
     <>
