@@ -2,12 +2,12 @@ import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
 export default async function handler(req, res) {
+  console.log(req, 'req')
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
   try {
     const { event, payload } = req.body;
-    console.log(payload, 'payload')
     if (event === "invitee.created") {
       const {
         email,
