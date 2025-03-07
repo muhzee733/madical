@@ -4,7 +4,7 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import withRoleProtection from "@/components/withRoleProtection";
+import withRoleProtection from "../components/withRoleProtection";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
