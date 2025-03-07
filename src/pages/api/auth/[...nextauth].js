@@ -26,7 +26,6 @@ export default NextAuth({
             uid: user.uid,
             email: user.email,
             role: 2,
-            accessToken: user.stsTokenManager.accessToken,
           };
         } catch (error) {
           console.error("Error during authorization", error);
@@ -60,7 +59,6 @@ export default NextAuth({
         token.role = user.role;
         token.uid = user.uid;
         token.email = user.email;
-        token.token = user.accessToken;
       }
       return token;
     },
@@ -68,7 +66,6 @@ export default NextAuth({
       session.user.role = token.role;
       session.user.uid = token.uid;
       session.user.email = token.email;
-      session.user.token = token.token;
       return session;
     },
   },
