@@ -4,14 +4,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import { signIn, useSession } from "next-auth/react";
-import { setUser, setLoading } from "../reducers/authSlice";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const dispatch = useDispatch();
   const { data: session, status } = useSession();
-  const loading = useSelector((state) => state.auth.loading);
+  console.log(session, "session");
+
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef(null);
@@ -23,7 +21,6 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
@@ -33,7 +30,6 @@ const Login = () => {
         email,
         password,
       });
-      setLoading(false);
       if (result?.status === 200) {
         Swal.fire({
           title: "Success!",
@@ -43,6 +39,7 @@ const Login = () => {
           showConfirmButton: false,
         });
         router.push("/patient");
+        console.log('Work')
       } else {
         Swal.fire({
           title: "Error!",

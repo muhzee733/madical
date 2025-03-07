@@ -6,6 +6,7 @@ export async function middleware(req) {
 
   // Check if token exists before accessing properties
   const userToken = token?.token; 
+  console.log(userToken ,' userToken')
 
   const { pathname } = req.nextUrl;
   const protectedRoutes = ["/doctor", "/patient"];
