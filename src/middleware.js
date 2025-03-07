@@ -5,8 +5,7 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   // Check if token exists before accessing properties
-  const userToken = token?.token; 
-  console.log(userToken ,' userToken')
+  const userToken = true; 
 
   const { pathname } = req.nextUrl;
   const protectedRoutes = ["/doctor", "/patient"];
