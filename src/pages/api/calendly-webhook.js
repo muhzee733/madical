@@ -1,21 +1,12 @@
 import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
-  console.log(req, "req");
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
-  const session = await getSession({ req });
-  if (!session) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-  const userId = session.user.uid;
-  console.log(userId);
   try {
     const { event, payload } = req.body;
-    console.log(req.body, "req.body");
     if (event === "invitee.created") {
       const {
         email,
@@ -52,7 +43,6 @@ export default async function handler(req, res) {
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        userId: userId,
       });
     }
 
