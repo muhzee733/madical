@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { InlineWidget } from "react-calendly";
 import Head from "next/head";
-import withRoleProtection from "../components/withRoleProtection";
+import {withRoleProtection} from "../components/withRoleProtection";
+
 
 const Patient = () => {
 
