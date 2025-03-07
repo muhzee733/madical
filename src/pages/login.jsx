@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { data: session, status } = useSession();
-  console.log(session, "session login");
 
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
