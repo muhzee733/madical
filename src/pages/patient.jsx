@@ -6,7 +6,6 @@ import Head from "next/head";
 
 const Patient = () => {
   const { data: session, status } = useSession();
-  console.log(session, "session");
   const router = useRouter();
 
   useEffect(() => {
