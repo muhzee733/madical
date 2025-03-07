@@ -26,7 +26,7 @@ export default NextAuth({
             uid: user.uid,
             email: user.email,
             role: 2,
-            accessToken: user.accessToken,
+            accessToken: user.stsTokenManager.accessToken,
           };
         } catch (error) {
           console.error("Error during authorization", error);
@@ -48,7 +48,7 @@ export default NextAuth({
       name: "next-auth.session-token",
       options: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: false,
         sameSite: "lax",
         path: "/",
       },

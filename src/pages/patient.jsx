@@ -7,7 +7,6 @@ import Head from "next/head";
 
 const Patient = () => {
   const { data: session, status } = useSession();
-  console.log(session, 'session patient')
   const router = useRouter();
   useEffect(() => {
     if (status === "loading") return;
