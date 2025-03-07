@@ -8,7 +8,7 @@ const Patient = () => {
   return (
     <>
       <Head>
-        <title>Patient Dashboard</title>
+        <title>Patient Dashboards</title>
       </Head>
       <div className="container py-5">
         <h1 className="text-center mb-4">Book a Slot to Meet Doctor!</h1>
