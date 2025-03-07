@@ -25,10 +25,8 @@ const MeetingsList = () => {
   useEffect(() => {
     if (status === "loading") return; // If the session is still loading, don't proceed
 
-    if (session.user.role !== 1) {
-      console.log('doctor')
-      router.push("/unauthorized"); // Redirect if session is not available or role is not 1 (doctor)
-      return;
+    if (status === "unauthenticated" || session?.user?.role !== 1) {
+      router.replace("/unauthorized"); // Redirect to unauthorized page
     }
 
     const fetchMeetings = async () => {

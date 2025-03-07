@@ -37,7 +37,11 @@ const Login = () => {
           timer: 1500,
           showConfirmButton: false,
         });
-        router.push("/patient");
+        if (session?.user?.role === 1) {
+          router.push("/doctor");
+        } else if (session?.user?.role === 2) {
+          router.push("/patient");
+        }
       } else {
         Swal.fire({
           title: "Error!",
