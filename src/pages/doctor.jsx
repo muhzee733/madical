@@ -10,22 +10,30 @@ const MeetingsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
+  const { data: session, status } = useSession();
+
   const handleRowClick = (meetingId) => {
     router.push(`/meetings/${meetingId}`);
   };
 
-  const { data: session, status } = useSession();
+  // Handle logout
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/login" });
+  };
 
+  // Effect to fetch meetings only when session is valid
   useEffect(() => {
+    if (status === "loading") return; // If the session is still loading, don't proceed
+
+    if (session.user.role !== 1) {
+      router.push("/unauthorized"); // Redirect if session is not available or role is not 1 (doctor)
+      return;
+    }
+
     const fetchMeetings = async () => {
       try {
-        if (!session?.user?.uid) {
-          return;
-        }
-
         const meetingsRef = collection(db, "meetings");
         const q = query(meetingsRef);
-
         const querySnapshot = await getDocs(q);
         const meetingsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -40,17 +48,15 @@ const MeetingsList = () => {
       }
     };
 
+    // Fetch meetings when session is available
     if (session) {
       fetchMeetings();
     }
-  }, [session]);
-
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/login" });
-  };
+  }, [session, status, router]);
 
   if (status === "loading") return <p>Loading authentication...</p>;
-  if (!session) return null;
+
+  if (!session) return <p>You must be logged in to access this page.</p>;
 
   return (
     <>
@@ -87,7 +93,11 @@ const MeetingsList = () => {
               </thead>
               <tbody>
                 {meetings.map((meeting) => (
-                  <tr key={meeting.id} onClick={() => handleRowClick(meeting.id)} style={{ cursor: "pointer" }}>
+                  <tr
+                    key={meeting.id}
+                    onClick={() => handleRowClick(meeting.id)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <td>{meeting.id}</td>
                     <td>{meeting.inviteeName}</td>
                     <td>{meeting.inviteeEmail}</td>
