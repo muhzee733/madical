@@ -4,6 +4,7 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
+import withRoleProtection from "@/components/withRoleProtection";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -16,19 +17,11 @@ const MeetingsList = () => {
     router.push(`/meetings/${meetingId}`);
   };
 
-  // Handle logout
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/login" });
   };
 
-  // Effect to fetch meetings only when session is valid
   useEffect(() => {
-    if (status === "loading") return; // If the session is still loading, don't proceed
-
-    if (status === "unauthenticated" || session?.user?.role !== 1) {
-      router.replace("/unauthorized"); // Redirect to unauthorized page
-    }
-
     const fetchMeetings = async () => {
       try {
         const meetingsRef = collection(db, "meetings");
@@ -113,4 +106,4 @@ const MeetingsList = () => {
   );
 };
 
-export default MeetingsList;
+export default withRoleProtection(MeetingsList, [1]);
