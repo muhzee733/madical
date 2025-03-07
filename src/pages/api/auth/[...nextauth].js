@@ -22,13 +22,14 @@ export default NextAuth({
             credentials.password
           );
           const user = userCredential.user;
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          const userRole = userDoc.exists() ? userDoc.data().role : 'user';
+          console.log(user, 'user')
+          // const userDocRef = doc(db, 'users', user.uid);
+          // const userDoc = await getDoc(userDocRef);
+          // const userRole = userDoc.exists() ? userDoc.data().role : 'user';
           return {
             uid: user.uid,
             email: user.email,
-            role: userRole,
+            role: 2,
             accessToken: user.accessToken
           };
         } catch (error) {
