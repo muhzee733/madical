@@ -22,7 +22,6 @@ export default NextAuth({
             credentials.password
           );
           const user = userCredential.user;
-          console.log(user, "user");
           return {
             uid: user.uid,
             email: user.email,
