@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
 import Head from "next/head";
-import Layout from "../components/layout";
+import Layout from "../components/data";
 import { FaStethoscope } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaUserDoctor } from "react-icons/fa6";
@@ -10,16 +10,13 @@ import { FaFaceGrinHearts } from "react-icons/fa6";
 
 const Patient = () => {
   const router = useRouter();
-  const userData = JSON.parse(sessionStorage.getItem("user"));
-  console.log(userData)
 
-  // useEffect(() => {
-  //   const userData = JSON.parse(sessionStorage.getItem("user"));
-  //   console.log(userData)
-  //   if (!userData || userData.role !== 2) {
-  //     router.push("/unauthorized");
-  //   }
-  // }, [router]);
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+    if (!userData || userData.role !== 2) {
+      router.push("/unauthorized");
+    }
+  }, [router]);
 
   return (
     <>

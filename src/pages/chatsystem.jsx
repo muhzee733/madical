@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import Layout from "../components/data";
 import React, { useState, useEffect } from "react";
 import {
   doc,

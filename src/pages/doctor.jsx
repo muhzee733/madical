@@ -3,24 +3,24 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import Layout from "../components/layout";
-import ChatBox from "../components/ChatBox";
+import Layout from "../components/data";
+import ChatBox from "../components/chat";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [chatBox, setChatBox] = useState({ open: false, patientId: null });
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
 
   const router = useRouter();
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("doctor"));
     if (!userData || userData.role !== 1) {
-      router.push("/unauthorized"); 
+      router.push("/unauthorized");
     } else {
-      setUser(userData); 
+      setUser(userData);
     }
   }, [router]);
 
@@ -45,8 +45,7 @@ const MeetingsList = () => {
       }
     };
     fetchMeetings();
-  }, [user]); 
-  
+  }, [user]);
 
   return (
     <>
@@ -85,10 +84,7 @@ const MeetingsList = () => {
                     </thead>
                     <tbody>
                       {meetings.map((meeting) => (
-                        <tr
-                          key={meeting.id}
-                          style={{ cursor: "pointer" }}
-                        >
+                        <tr key={meeting.id} style={{ cursor: "pointer" }}>
                           <td>{meeting.inviteeName}</td>
                           <td>{meeting.inviteeEmail}</td>
                           <td>{meeting.status}</td>
