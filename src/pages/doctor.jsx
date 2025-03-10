@@ -46,9 +46,7 @@ const MeetingsList = () => {
     };
     fetchMeetings();
   }, [user]); 
-
-  console.log(meetings)
-
+  
 
   return (
     <>

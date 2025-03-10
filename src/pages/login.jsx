@@ -21,6 +21,7 @@ import Swal from "sweetalert2";
 const Login = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -30,7 +31,7 @@ const Login = () => {
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     if (user) {
-      const parsedUser = JSON.parse(user); 
+      const parsedUser = JSON.parse(user);
       if (parsedUser.role === 2) {
         router.push("/patient");
       }
@@ -39,6 +40,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
@@ -84,6 +86,8 @@ const Login = () => {
         icon: "error",
         confirmButtonText: "Try Again",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -147,8 +151,15 @@ const Login = () => {
                     type="submit"
                     className="vs-btn"
                     style={{ width: "100%", borderRadius: "30px" }}
+                    disabled={loading}
                   >
-                    Login
+                    {loading ? (
+                      <div className="spinner-border text-light" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      "Login"
+                    )}
                   </button>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">

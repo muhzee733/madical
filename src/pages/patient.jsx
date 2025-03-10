@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
 import Head from "next/head";
@@ -9,24 +9,17 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { FaFaceGrinHearts } from "react-icons/fa6";
 
 const Patient = () => {
-  const [user, setUser] = useState(null);
   const router = useRouter();
+  const userData = JSON.parse(sessionStorage.getItem("user"));
+  console.log(userData)
 
-  useEffect(() => {
-    // Fetch user from sessionStorage
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    
-    // If no user data is found or user role is not 2, redirect to unauthorized page
-    if (!user || user.role !== 2) {
-      router.push("/unauthorized");
-    } else {
-      setUser(user);
-    }
-  }, [router]);
-
-  if (!user) {
-    return null; 
-  }
+  // useEffect(() => {
+  //   const userData = JSON.parse(sessionStorage.getItem("user"));
+  //   console.log(userData)
+  //   if (!userData || userData.role !== 2) {
+  //     router.push("/unauthorized");
+  //   }
+  // }, [router]);
 
   return (
     <>
@@ -54,7 +47,7 @@ const Patient = () => {
               <span className="dash-widget-bg2">
                 <FaCircleUser />
               </span>
-              <div className="dash-widget-info " style={{ textAlign: "right" }}>
+              <div className="dash-widget-info" style={{ textAlign: "right" }}>
                 <h3>1072</h3>
                 <span className="widget-title2">
                   Patients <i className="fa fa-check" aria-hidden="true"></i>

@@ -4,7 +4,7 @@ import { FiAirplay } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, unreadCount }) => {
   const [patientId, setPatientId] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
@@ -18,6 +18,10 @@ const Layout = ({ children }) => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("user");
+    router.push("/login");
+  };
+  const doctorHandle = () => {
+    sessionStorage.removeItem("doctor");
     router.push("/doctor-login");
   };
 
@@ -59,9 +63,15 @@ const Layout = ({ children }) => {
                     </Link>
                   </li>
                   <li>
-                    <button onClick={handleLogout} className="dropdown-item">
-                      Logout
-                    </button>
+                    {patientId === 2 ? (
+                      <button onClick={handleLogout} className="dropdown-item">
+                        Logout
+                      </button>
+                    ) : (
+                      <button onClick={doctorHandle} className="dropdown-item">
+                        Logout
+                      </button>
+                    )}
                   </li>
                 </ul>
               )}
@@ -76,15 +86,28 @@ const Layout = ({ children }) => {
           <div id="sidebar-menu" className="sidebar-menu">
             <ul>
               <li className="menu-title">Main</li>
-              <li className="active">
-                <Link href="/doctor">
-                  <FiAirplay /> <span>Dashboard</span>
-                </Link>
-              </li>
+              {patientId === 2 ? (
+                <li className="active">
+                  <Link href="/patient">
+                    <FiAirplay /> <span>Dashboard</span>
+                  </Link>
+                </li>
+              ) : (
+                <li className="active">
+                  <Link href="/doctor">
+                    <FiAirplay /> <span>Dashboard</span>
+                  </Link>
+                </li>
+              )}
               {patientId === 2 && (
                 <li>
                   <Link href="/chatsystem">
-                    <FaRocketchat /> <span>Chat</span>
+                    <div>
+                      <FaRocketchat /> <span>Chat</span>
+                    </div>
+                    {unreadCount > 0 && (
+                      <span className="badge">{unreadCount}</span>
+                    )}
                   </Link>
                 </li>
               )}

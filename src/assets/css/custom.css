@@ -828,10 +828,6 @@ textarea.form-control {
 	margin-left: 10px;
 	white-space: nowrap;
 }
-.sidebar .sidebar-menu > ul > li > a span.badge {
-	color: #fff;
-	margin-left: auto;
-}
 .sidebar-menu ul ul a {
 	display: block;
 	font-size: 14px;

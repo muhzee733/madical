@@ -3,11 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
-import {
-  collection,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../../firebase";
 import Swal from "sweetalert2";
@@ -18,12 +14,13 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  // Redirect if already authorized
   useEffect(() => {
-    const status = sessionStorage.getItem("status");
-    const role = sessionStorage.getItem("doctor");
-    if (status === "authorized" && role.role === 1) {
-      router.push("/doctor"); // Redirect to doctor page
+    const user = sessionStorage.getItem("doctor");
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      if (parsedUser.role === 1) {
+        router.push("/doctor");
+      }
     }
   }, [router]);
 
@@ -52,7 +49,6 @@ const Login = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         sessionStorage.setItem("doctor", JSON.stringify(userData));
-        sessionStorage.setItem("status", "authorized");
         // Show success message and redirect to patient page
         Swal.fire({
           title: "Success!",

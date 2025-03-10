@@ -2778,8 +2778,7 @@ a.vs-btn.only {
 
 .badge {
   position: absolute;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
+  right: 10%;
   width: fit-content;
   display: inline-block;
   text-align: center;

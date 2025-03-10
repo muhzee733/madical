@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        userId: 123456
+        patientId: ""
       });
     }
 
