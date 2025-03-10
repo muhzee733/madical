@@ -1,4 +1,4 @@
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout";
 import React, { useState, useEffect } from "react";
 import {
   doc,
@@ -111,11 +111,11 @@ const PatientChatSystem = () => {
                   style={{
                     backgroundColor: "#fff",
                     border: "1px solid #eaeaea",
-                    color:  msg.senderId === patientId ? "white" : "gray",
+                    color: msg.senderId === patientId ? "white" : "gray",
                     float: "left",
                     position: "relative",
                     padding: "8px 15px",
-                    borderRadius:  "20px 20px 20px 20px",
+                    borderRadius: "20px 20px 20px 20px",
                     maxWidth: "70%",
                     wordWrap: "break-word",
                     alignSelf:

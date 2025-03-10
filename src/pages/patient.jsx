@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
 import Head from "next/head";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout";
 import { FaStethoscope } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaUserDoctor } from "react-icons/fa6";
