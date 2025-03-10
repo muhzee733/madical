@@ -38,7 +38,9 @@ const PatientChatSystem = () => {
           setUnreadCount((prev) => prev + 1);
           updateDoc(chatDocRef, {
             "notifications.patientUnread": false,
-          }).catch((error) => console.error("Error updating notification:", error));
+          }).catch((error) =>
+            console.error("Error updating notification:", error)
+          );
         }
       } else {
         setChatMessages([]);
@@ -50,19 +52,19 @@ const PatientChatSystem = () => {
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
-  
+
     const chatDocRef = doc(db, "messages", `${doctorId}_${patientId}`);
-  
+
     const message = {
       text: newMessage,
       senderId: patientId,
       displayName: "Patient",
-      timestamp: new Date(),  // Place the timestamp here
+      timestamp: new Date(), // Place the timestamp here
     };
-  
+
     try {
       await updateDoc(chatDocRef, {
-        messages: arrayUnion(message),  // Adding message to the array
+        messages: arrayUnion(message), // Adding message to the array
         lastUpdated: new Date(), // Update lastUpdated field separately
         notifications: {
           doctorUnread: true,
@@ -74,8 +76,6 @@ const PatientChatSystem = () => {
       console.error("Error sending message:", error);
     }
   };
-  
-  
 
   return (
     <>
@@ -83,8 +83,25 @@ const PatientChatSystem = () => {
         <title>Chat System</title>
       </Head>
       <Layout unreadCount={unreadCount}>
-        <div style={{ display: "flex", flexDirection: "column", height: "100vh", backgroundColor: "#f0f0f0" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "15px", overflowY: "auto", flexGrow: 1, padding: "1rem", marginTop: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "92vh",
+            backgroundColor: "#f0f0f0",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px",
+              overflowY: "auto",
+              flexGrow: 1,
+              padding: "1rem",
+              marginTop: "10px",
+            }}
+          >
             {chatMessages.length === 0 ? (
               <div>No messages yet.</div>
             ) : (
@@ -92,13 +109,19 @@ const PatientChatSystem = () => {
                 <div
                   key={index}
                   style={{
+                    backgroundColor: "#fff",
+                    border: "1px solid #eaeaea",
+                    color:  msg.senderId === patientId ? "white" : "gray",
+                    float: "left",
+                    position: "relative",
+                    padding: "8px 15px",
+                    borderRadius:  "20px 20px 20px 20px",
                     maxWidth: "70%",
                     wordWrap: "break-word",
-                    alignSelf: msg.senderId === patientId ? "flex-end" : "flex-start",
-                    backgroundColor: msg.senderId === patientId ? "#28a745" : "#17a2b8",
-                    color: "white",
-                    padding: "10px",
-                    borderRadius: "10px",
+                    alignSelf:
+                      msg.senderId === patientId ? "flex-end" : "flex-start",
+                    backgroundColor:
+                      msg.senderId === patientId ? "gray" : "white",
                     marginBottom: "10px",
                   }}
                 >
@@ -108,17 +131,38 @@ const PatientChatSystem = () => {
             )}
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", padding: "1rem", backgroundColor: "#fff", boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "1rem",
+              backgroundColor: "#fff",
+              boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
+            }}
+          >
             <input
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              style={{ flexGrow: 1, borderRadius: "25px", padding: "10px", border: "1px solid #ccc" }}
+              style={{
+                flexGrow: 1,
+                borderRadius: "25px",
+                padding: "10px",
+                border: "1px solid #ccc",
+              }}
               placeholder="Type a message..."
             />
             <button
               onClick={handleSendMessage}
-              style={{ marginLeft: "10px", padding: "10px 20px", backgroundColor: "#007bff", color: "white", border: "none", borderRadius: "25px", cursor: "pointer" }}
+              style={{
+                marginLeft: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "25px",
+                cursor: "pointer",
+              }}
             >
               Send
             </button>

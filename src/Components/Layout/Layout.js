@@ -122,9 +122,7 @@ const Layout = ({ children, unreadCount }) => {
       </div>
 
       {/* Page Content */}
-      <div className="page-wrapper">
-        <div className="content">{children}</div>
-      </div>
+      <div className="page-wrapper">{children}</div>
     </>
   );
 };

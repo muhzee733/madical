@@ -147,14 +147,14 @@ body {
   padding: 10px;
 }
 
-.chat-footer {
+/* .chat-footer {
   display: flex;
   padding: 10px;
   border-top: 1px solid #ddd;
   background: white;
   position: sticky;
   bottom: 0;
-}
+} */
 
 .chat-input {
   flex: 1;
