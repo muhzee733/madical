@@ -4,7 +4,11 @@ import { Provider, useDispatch } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../store";
 import "../assets/css/style.css";
+import "../assets/css/custom.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/lara-light-blue/theme.css';
+import "primeicons/primeicons.css";
 import { SessionProvider } from "next-auth/react"; 
 
 function AppWrapper({ Component, pageProps }) {

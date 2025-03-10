@@ -6,13 +6,7 @@ import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import {
   collection,
   doc,
-  setDoc,
   getDoc,
-  updateDoc,
-  arrayUnion,
-  onSnapshot,
-  query,
-  where,
 } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../../firebase";
@@ -24,18 +18,18 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  // Redirect if already authorized
+  useEffect(() => {
+    const status = sessionStorage.getItem("status");
+    const role = sessionStorage.getItem("doctor");
+    if (status === "authorized" && role.role === 1) {
+      router.push("/doctor"); // Redirect to doctor page
+    }
+  }, [router]);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  useEffect(() => {
-    const user = sessionStorage.getItem("user");
-    if (user) {
-      const parsedUser = JSON.parse(user); 
-      if (parsedUser.role === 2) {
-        router.push("/patient");
-      }
-    }
-  }, [router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -57,7 +51,9 @@ const Login = () => {
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        sessionStorage.setItem("user", JSON.stringify(userData));
+        sessionStorage.setItem("doctor", JSON.stringify(userData));
+        sessionStorage.setItem("status", "authorized");
+        // Show success message and redirect to patient page
         Swal.fire({
           title: "Success!",
           text: "Login successful. Redirecting...",
@@ -66,8 +62,8 @@ const Login = () => {
           showConfirmButton: false,
         });
 
-        // Redirect to the patient page
-        router.push("/patient");
+        // Redirect to the doctor page
+        router.push("/doctor");
       } else {
         Swal.fire({
           title: "Error!",

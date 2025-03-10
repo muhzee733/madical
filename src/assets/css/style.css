@@ -19542,16 +19542,6 @@ h6 {
   font-family: "Nunito", sans-serif;
 }
 
-.header {
-  transition: all 0.5s;
-  z-index: 997;
-  height: 60px;
-  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
-  padding-left: 20px;
-  /* Toggle Sidebar Button */
-  /* Search Bar */
-}
 
 .header .toggle-sidebar-btn {
   font-size: 32px;
@@ -19763,37 +19753,10 @@ h6 {
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
-.sidebar {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  z-index: 996;
-  transition: all 0.3s;
-  padding: 20px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
-  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
-}
 
-@media (max-width: 1199px) {
-  .sidebar {
-    left: -300px;
-  }
-}
 
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: #fff;
-}
 
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
-}
+
 
 @media (min-width: 1200px) {
   #main,
