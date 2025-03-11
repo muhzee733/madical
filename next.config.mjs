@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
+import path from 'path';
+
 const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': require('path').resolve(__dirname, './src'),
+      '@': path.resolve('./src'),
     };
     return config;
   },
