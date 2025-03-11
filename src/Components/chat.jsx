@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const ChatBox = ({ chatOpen, onClose, patientId }) => {
+const Chat = ({ chatOpen, onClose, patientId }) => {
   const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [doctorId, setDoctorId] = useState("");
@@ -188,4 +188,4 @@ const ChatBox = ({ chatOpen, onClose, patientId }) => {
   );
 };
 
-export default ChatBox;
+export default Chat;

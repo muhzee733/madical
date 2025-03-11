@@ -4,7 +4,7 @@ import { FiAirplay } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Layout = ({ children, unreadCount }) => {
+const Navbar = ({ children, unreadCount }) => {
   const [patientId, setPatientId] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
@@ -127,4 +127,4 @@ const Layout = ({ children, unreadCount }) => {
   );
 };
 
-export default Layout;
+export default Navbar;

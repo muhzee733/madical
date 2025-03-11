@@ -1,4 +1,3 @@
-import Layout from "../components/data";
 import React, { useState, useEffect } from "react";
 import {
   doc,
@@ -9,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import Head from "next/head";
+import Navbar from "../components/Navbar";
 
 const PatientChatSystem = () => {
   const [chatMessages, setChatMessages] = useState([]);
@@ -82,7 +82,7 @@ const PatientChatSystem = () => {
       <Head>
         <title>Chat System</title>
       </Head>
-      <Layout unreadCount={unreadCount}>
+      <Navbar unreadCount={unreadCount}>
         <div
           style={{
             display: "flex",
@@ -168,7 +168,7 @@ const PatientChatSystem = () => {
             </button>
           </div>
         </div>
-      </Layout>
+      </Navbar>
     </>
   );
 };

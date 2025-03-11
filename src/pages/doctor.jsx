@@ -3,8 +3,8 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import Layout from "../components/data";
-import ChatBox from "../components/chat";
+import Chat from "../components/Chat";
+import Navbar from "../components/Navbar";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -14,7 +14,6 @@ const MeetingsList = () => {
   const [user, setUser] = useState(null);
 
   const router = useRouter();
-
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("doctor"));
     if (!userData || userData.role !== 1) {
@@ -52,7 +51,7 @@ const MeetingsList = () => {
       <Head>
         <title>Doctor Dashboard</title>
       </Head>
-      <Layout>
+      <Navbar>
         <div className="container mt-4">
           <h2 className="text-center mb-4">Scheduled Meetings</h2>
 
@@ -112,13 +111,13 @@ const MeetingsList = () => {
           )}
         </div>
         {chatBox.open && (
-          <ChatBox
+          <Chat
             chatOpen={chatBox.open}
             patientId={chatBox.patientId}
             onClose={() => setChatBox({ open: false, patientId: null })}
           />
         )}
-      </Layout>
+      </Navbar>
     </>
   );
 };
