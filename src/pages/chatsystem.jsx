@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import Head from "next/head";
-import Navbar from "../components/navbar";
+import {Navbar} from "../components/navbar";
 
 const PatientChatSystem = () => {
   const [chatMessages, setChatMessages] = useState([]);
