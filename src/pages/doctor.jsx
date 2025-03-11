@@ -3,8 +3,8 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import ChatBox from "../components/ChatBox";
-import Navbar from '../components/Navbar';
+import ChatBox from "../components/chatbox";
+import Navbar from "../components/navbar";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
