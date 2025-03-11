@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { InlineWidget } from "react-calendly";
 import Head from "next/head";
-import Layout from "../components/data";
+import Navbar from 'components/Navbar';
 import { FaStethoscope } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaUserDoctor } from "react-icons/fa6";
@@ -24,7 +24,7 @@ const Patient = () => {
         <title>Patient Dashboards</title>
       </Head>
 
-      <Layout>
+      <Navbar>
         <div className="row">
           <div className="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div className="dash-widget">
@@ -86,7 +86,7 @@ const Patient = () => {
             </div>
           </div>
         </div>
-      </Layout>
+      </Navbar>
     </>
   );
 };
