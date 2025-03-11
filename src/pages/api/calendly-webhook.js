@@ -2,12 +2,13 @@ import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
 export default async function handler(req, res) {
-
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
+
   try {
     const { event, payload } = req.body;
+
     if (event === "invitee.created") {
       const {
         email,
@@ -19,6 +20,7 @@ export default async function handler(req, res) {
         timezone,
         status,
       } = payload;
+
       const {
         created_at,
         start_time,
@@ -27,6 +29,14 @@ export default async function handler(req, res) {
         name: eventName,
         uri: eventUri,
       } = scheduled_event;
+
+      let patientId = "";
+      if (typeof window !== "undefined") {
+        const storedPatient = sessionStorage.getItem("user");
+        if (storedPatient) {
+          patientId = JSON.parse(storedPatient).id || "";
+        }
+      }
 
       await addDoc(collection(db, "meetings"), {
         eventType: event,
@@ -44,13 +54,11 @@ export default async function handler(req, res) {
         rescheduleUrl: reschedule_url,
         timezone: timezone,
         status: status,
-        patientId: ""
+        patientId: patientId,
       });
     }
 
-    res
-      .status(200)
-      .json({ success: true, message: "Data stored successfully" });
+    res.status(200).json({ success: true, message: "Data stored successfully" });
   } catch (error) {
     console.error("Error storing meeting:", error);
     res.status(500).json({ success: false, error: error.message });
