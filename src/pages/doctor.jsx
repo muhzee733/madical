@@ -3,7 +3,7 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import Chat from "@/components/Chat";
+import Chat from "../components/Chat.js";
 import Navbar from 'components/Navbar';
 
 const MeetingsList = () => {
