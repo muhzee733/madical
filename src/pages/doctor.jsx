@@ -3,8 +3,8 @@ import Head from "next/head";
 import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import Chat from "../components/chatBox";
-import Navbar from 'components/Navbar';
+import ChatBox from "../components/ChatBox";
+import Navbar from '../components/Navbar';
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -111,7 +111,7 @@ const MeetingsList = () => {
           )}
         </div>
         {chatBox.open && (
-          <Chat
+          <ChatBox
             chatOpen={chatBox.open}
             patientId={chatBox.patientId}
             onClose={() => setChatBox({ open: false, patientId: null })}
