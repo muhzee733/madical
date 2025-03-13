@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 import ChatBox from "../components/chatbox";
-import Layout from "../components/data/layout";
+import Layout from "../components/layout";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
