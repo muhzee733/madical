@@ -4,7 +4,8 @@ import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 import ChatBox from "../components/chatbox";
-import Layout from "../components/layout";
+import DashboardHeader from "../components/DashboardHeader";
+import DashboardSidebae from "../components/DashboardSidebae";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -14,18 +15,18 @@ const MeetingsList = () => {
   const [user, setUser] = useState(null);
 
   const router = useRouter();
-  useEffect(() => {
-    const userData = JSON.parse(sessionStorage.getItem("doctor"));
-    if (!userData || userData.role !== 1) {
-      router.push("/unauthorized");
-    } else {
-      setUser(userData);
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const userData = JSON.parse(sessionStorage.getItem("doctor"));
+  //   if (!userData || userData.role !== 1) {
+  //     router.push("/unauthorized");
+  //   } else {
+  //     setUser(userData);
+  //   }
+  // }, [router]);
 
   useEffect(() => {
     const fetchMeetings = async () => {
-      if (!user) return;
+      // if (!user) return;
 
       try {
         const meetingsRef = collection(db, "meetings");
@@ -51,7 +52,9 @@ const MeetingsList = () => {
       <Head>
         <title>Doctor Dashboard</title>
       </Head>
-      <Layout>
+      <DashboardHeader>
+        <DashboardSidebae/>
+        <div className="page-wrapper">
         <div className="container mt-4">
           <h2 className="text-center mb-4">Scheduled Meetings</h2>
 
@@ -117,7 +120,8 @@ const MeetingsList = () => {
             onClose={() => setChatBox({ open: false, patientId: null })}
           />
         )}
-      </Layout>
+      </div>
+      </DashboardHeader>
     </>
   );
 };
