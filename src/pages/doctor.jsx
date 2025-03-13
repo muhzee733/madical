@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { collection, query, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 import ChatBox from "../components/chatbox";
-import Navbar from "../components/navbar";
+import Layout from "../components/data/layout";
 
 const MeetingsList = () => {
   const [meetings, setMeetings] = useState([]);
@@ -51,7 +51,7 @@ const MeetingsList = () => {
       <Head>
         <title>Doctor Dashboard</title>
       </Head>
-      <Navbar>
+      <Layout>
         <div className="container mt-4">
           <h2 className="text-center mb-4">Scheduled Meetings</h2>
 
@@ -117,7 +117,7 @@ const MeetingsList = () => {
             onClose={() => setChatBox({ open: false, patientId: null })}
           />
         )}
-      </Navbar>
+      </Layout>
     </>
   );
 };
