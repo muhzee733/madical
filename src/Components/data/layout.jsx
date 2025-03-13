@@ -4,7 +4,7 @@ import { FiAirplay } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function DashboardLayout({ children, unreadCount }) {
+export default function Layout({ children, unreadCount }) {
   const [patientId, setPatientId] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
